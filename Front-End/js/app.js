@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const state = { movies: [], view: 'home', genre: '', query: '', slide: 0, timer: null, cur: null, slot: null,
-    seats: new Set(), list: JSON.parse(localStorage.getItem('dt-list') || '[]') };
+    seats: new Set(), shown: 12, gimg: {}, feat: [], list: JSON.parse(localStorage.getItem('dt-list') || '[]') };
 
   // ---------- helpers ----------
   const ic = (n, c = '') => `<svg class="i ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2400); };
 
   const card = (m, i = 0) => `
-    <article class="card" style="--i:${i}" data-id="${m.id}" tabindex="0">
+    <article class="card" style="--i:${Math.min(i, 12)}" data-id="${m.id}" tabindex="0">
       ${poster(m)}${ageChip(m)}
       <h3>${m.title}</h3>
       <p><span>${ic('star', 'st')} ${m.imdb}</span><span class="rt-s">${ic('tomato')}${m.rt}%</span></p>
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- home renderers ----------
   function renderHero() {
-    const m = state.movies[state.slide], h = $('#hero');
+    const m = state.feat[state.slide], h = $('#hero');
     h.style.setProperty('--bg-img', `url("${IMG}w342${m.poster}")`);
     $('#hero-poster').innerHTML = poster(m, 'w500', '', false);
     $('#hero-title').textContent = m.title;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#hero-text').textContent = m.synopsis;
     $('#hero-meta').textContent = `Directed by ${m.director}  |  ${fmtDate(m.release)}  |  ${m.duration}`;
     $('#hero-list').innerHTML = state.list.includes(m.id) ? `${ic('check')}In My List` : `${ic('plus')}My List`;
-    $('#dots').innerHTML = state.movies.map((_, i) => `<i class="${i === state.slide ? 'on' : ''}"></i>`).join('');
+    $('#dots').innerHTML = state.feat.map((_, i) => `<i class="${i === state.slide ? 'on' : ''}"></i>`).join('');
     h.classList.remove('swap'); void h.offsetWidth; h.classList.add('swap');
   }
   function renderHot() {
@@ -70,23 +70,43 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="bar"><i style="--w:${sold(m)}%"></i></div>
         <small>${sold(m)}% sold${sold(m) > 85 ? ' - almost full' : ''}</small></div></article>`).join('');
   }
+  const isFiltering = () => !!(state.query || state.genre || state.view === 'mylist');
   function renderGrid() {
-    const items = visible();
-    $('#grid-title').textContent = state.view === 'mylist' ? 'My List' : state.genre || 'Now showing';
-    $('#grid').innerHTML = items.length ? items.map(card).join('')
+    const items = visible(), filtering = isFiltering();
+    const list = filtering ? items : items.slice(0, state.shown);
+    $('#grid-title').textContent = state.view === 'mylist' ? 'My List' : state.genre ? `${state.genre} (${items.length})` : 'Now showing';
+    $('#grid').innerHTML = list.length ? list.map(card).join('')
       : `<p class="empty">${state.view === 'mylist' ? 'Your list is empty. Add a movie with the My List button.' : 'No movies match your search.'}</p>`;
+    $('#more').hidden = filtering || state.shown >= items.length;
   }
   function renderGenres() {
-    const all = [...new Set(state.movies.flatMap(genresOf))];
-    $('#genres').innerHTML = all.map((g, i) => `<button class="genre g${i % 6}${state.genre === g ? ' on' : ''}" data-genre="${g}">${g}</button>`).join('');
+    const count = {};
+    state.movies.forEach((m) => genresOf(m).forEach((g) => count[g] = (count[g] || 0) + 1));
+    $('#genres').innerHTML = Object.keys(count).sort((a, b) => count[b] - count[a]).map((g, i) => {
+      const pool = state.movies.filter((m) => genresOf(m).includes(g));
+      const m = state.gimg[g] || (state.gimg[g] = pool[Math.floor(Math.random() * pool.length)]);   // random, but stable
+      return `<button class="genre g${i % 6}${state.genre === g ? ' on' : ''}" data-genre="${g}">
+        <img src="${IMG}w185${m.poster}" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+        <span class="g-name">${g}<small>${count[g]} movie${count[g] > 1 ? 's' : ''}</small></span></button>`;
+    }).join('');
   }
   function renderRows() {
     const count = {};
     state.movies.forEach((m) => genresOf(m).forEach((g) => count[g] = (count[g] || 0) + 1));
-    $('#rows').innerHTML = Object.keys(count).filter((g) => count[g] > 1).slice(0, 4).map((g) => `
+    $('#rows').innerHTML = Object.keys(count).sort((a, b) => count[b] - count[a]).slice(0, 6).map((g) => `
       <section><div class="row-head"><h2>${g}</h2></div>
-      <div class="rail">${state.movies.filter((m) => genresOf(m).includes(g)).map((m, i) => card(m, i)).join('')}</div></section>`).join('');
+      <div class="rail-wrap">
+        <button class="rail-btn l" data-dir="-1" aria-label="Scroll left" hidden>${ic('left')}</button>
+        <div class="rail">${state.movies.filter((m) => genresOf(m).includes(g)).map((m, i) => card(m, i)).join('')}</div>
+        <button class="rail-btn r" data-dir="1" aria-label="Scroll right">${ic('right')}</button>
+      </div></section>`).join('');
   }
+  const updateArrows = (rail) => {
+    const w = rail.parentElement, max = rail.scrollWidth - rail.clientWidth;
+    w.querySelector('.l').hidden = rail.scrollLeft < 8;
+    w.querySelector('.r').hidden = rail.scrollLeft > max - 8;
+  };
+  const updateAllArrows = () => requestAnimationFrame(() => document.querySelectorAll('.rail').forEach(updateArrows));
   function renderTop() {
     $('#top-list').innerHTML = [...state.movies].sort((a, b) => b.imdb - a.imdb).slice(0, 5).map((m, i) => `
       <div class="top-item" data-id="${m.id}"><span class="rank">${i + 1}</span>${poster(m, 'w92')}
@@ -98,17 +118,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function refresh() {
-    const filtering = state.query || state.genre || state.view === 'mylist';
+    const filtering = isFiltering();
     $('#hero').hidden = !!filtering || state.view !== 'home';
     $('#hot-section').hidden = !!filtering;
     $('#rows').hidden = !!filtering;
     $('#genres-section').hidden = state.view === 'mylist';
-    renderGrid();
+    renderGrid(); updateAllArrows();
   }
 
   // ---------- slider ----------
   function goTo(n) {
-    state.slide = (n + state.movies.length) % state.movies.length;
+    state.slide = (n + state.feat.length) % state.feat.length;
     renderHero();
     clearInterval(state.timer);
     state.timer = setInterval(() => goTo(state.slide + 1), 8000);
@@ -123,7 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#details').innerHTML = `
       <button class="back" id="back-btn">${ic('left')}Back to movies</button>
       <div class="d-hero">
-        <div class="trailer"><iframe src="${m.trailer}" title="${m.title} trailer" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="trailer">${m.trailer
+          ? `<iframe src="${m.trailer}" title="${m.title} trailer" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>`
+          : `<div class="no-trailer">${ic('film')}<p>Trailer not added yet.</p><a class="btn ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=${encodeURIComponent(m.title + ' official trailer')}">Search on YouTube</a></div>`}</div>
         <div class="d-info">
           <div class="chips">${ageChip(m)}${rates(m)}</div>
           <h1>${m.title}</h1>
@@ -200,9 +222,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- events ----------
   $('#home').addEventListener('click', (e) => {
+    const rb = e.target.closest('.rail-btn');
+    if (rb) { const r = rb.parentElement.querySelector('.rail'); r.scrollBy({ left: rb.dataset.dir * r.clientWidth * 0.85, behavior: 'smooth' }); return; }
     const t = e.target.closest('[data-id]'); if (t) return openDetails(+t.dataset.id);
     const g = e.target.closest('[data-genre]');
-    if (g) { state.genre = state.genre === g.dataset.genre ? '' : g.dataset.genre; renderGenres(); refresh(); return; }
+    if (g) { state.genre = state.genre === g.dataset.genre ? '' : g.dataset.genre; renderGenres(); refresh();
+      if (state.genre) requestAnimationFrame(() => $('#grid-title').scrollIntoView({ behavior: 'smooth', block: 'start' }));   // jump to the results
+      return; }
     const c = e.target.closest('[data-code]');
     if (c) { navigator.clipboard?.writeText(c.dataset.code); toast(`Code ${c.dataset.code} copied`); }
   });
@@ -229,10 +255,13 @@ document.addEventListener('DOMContentLoaded', () => {
   $('#side-nav').addEventListener('click', (e) => { const a = e.target.closest('a'); if (a) { e.preventDefault(); setView(a.dataset.view); } });
   $('#search').addEventListener('input', (e) => { state.query = e.target.value.trim(); closeDetails(); refresh(); });
   $('#clear-genre').addEventListener('click', () => { state.genre = ''; renderGenres(); refresh(); });
+  $('#more').addEventListener('click', () => { state.shown += 12; renderGrid(); });
+  $('#rows').addEventListener('scroll', (e) => { if (e.target.classList && e.target.classList.contains('rail')) updateArrows(e.target); }, true);
+  window.addEventListener('resize', updateAllArrows);
   $('#prev').addEventListener('click', () => goTo(state.slide - 1));
   $('#next').addEventListener('click', () => goTo(state.slide + 1));
-  $('#hero-watch').addEventListener('click', () => openDetails(state.movies[state.slide].id));
-  $('#hero-list').addEventListener('click', () => toggleList(state.movies[state.slide].id));
+  $('#hero-watch').addEventListener('click', () => openDetails(state.feat[state.slide].id));
+  $('#hero-list').addEventListener('click', () => toggleList(state.feat[state.slide].id));
 
   // ---------- init ----------
   (async () => {
@@ -240,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch('data/movies.json');
       if (!res.ok) throw new Error('Could not load data/movies.json');
       state.movies = await res.json();
+      state.feat = state.movies.slice(0, 6);
       renderHot(); renderGenres(); renderRows(); renderTop(); renderDeals(); refresh(); goTo(0);
     } catch (err) {
       console.error(err);
