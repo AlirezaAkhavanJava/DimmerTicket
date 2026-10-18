@@ -1,6 +1,6 @@
 package com.alireza.dimmertickbackend.domain.mapper;
 
-import com.alireza.dimmertickbackend.domain.Movie;
+import com.alireza.dimmertickbackend.domain.model.Movie;
 import com.alireza.dimmertickbackend.domain.dto.MovieResponse;
 import org.springframework.stereotype.Component;
 

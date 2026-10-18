@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const $ = (s) => document.querySelector(s);
   const IMG = 'https://image.tmdb.org/t/p/';          // official TMDB image CDN (small sizes = fast)
+  const API = 'http://localhost:8080/api/movies';      // Spring Boot backend
   const PRICE = 14, MAX_SEATS = 8;
 
   const CINEMAS = [
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `<div class="pw ${cls}" data-t="${m.title}"><img src="${IMG}${size}${m.poster}" alt="${m.title} poster" width="342" height="513" ${lazy ? 'loading="lazy"' : ''} decoding="async" onerror="this.remove()"></div>`;
   const genresOf = (m) => m.genre.split(',').map((g) => g.trim());
   const ageChip = (m) => `<span class="age a-${m.age.replace('-', '')}" title="Age rating">${m.age}</span>`;
-  const rates = (m) => `<span class="rate"><b>IMDb</b>${m.imdb}</span><span class="rate" title="Rotten Tomatoes">${ic('tomato')}${m.rt}%</span>`;
+  const rates = (m) => `<span class="rate"><b>IMDb</b>${m.imdb}</span><span class="rate" title="Rotten Tomatoes">${ic('tomato')}${m.rottenTomatoes}%</span>`;
   const fmtDate = (s) => new Date(s + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   const sold = (m) => 35 + (m.id * 29) % 60;           // demo numbers: replace with real booking data
   const lastHour = (m) => 20 + (m.id * 53) % 180;
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <article class="card" style="--i:${Math.min(i, 12)}" data-id="${m.id}" tabindex="0">
       ${poster(m)}${ageChip(m)}
       <h3>${m.title}</h3>
-      <p><span>${ic('star', 'st')} ${m.imdb}</span><span class="rt-s">${ic('tomato')}${m.rt}%</span></p>
+      <p><span>${ic('star', 'st')} ${m.imdb}</span><span class="rt-s">${ic('tomato')}${m.rottenTomatoes}%</span></p>
     </article>`;
 
   const visible = () => state.movies.filter((m) => {
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#hero-title').textContent = m.title;
     $('#hero-chips').innerHTML = ageChip(m) + rates(m);
     $('#hero-text').textContent = m.synopsis;
-    $('#hero-meta').textContent = `Directed by ${m.director}  |  ${fmtDate(m.release)}  |  ${m.duration}`;
+    $('#hero-meta').textContent = `Directed by ${m.director}  |  ${fmtDate(m.releaseDate)}  |  ${m.duration}`;
     $('#hero-list').innerHTML = state.list.includes(m.id) ? `${ic('check')}In My List` : `${ic('plus')}My List`;
     $('#dots').innerHTML = state.feat.map((_, i) => `<i class="${i === state.slide ? 'on' : ''}"></i>`).join('');
     h.classList.remove('swap'); void h.offsetWidth; h.classList.add('swap');
@@ -110,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderTop() {
     $('#top-list').innerHTML = [...state.movies].sort((a, b) => b.imdb - a.imdb).slice(0, 5).map((m, i) => `
       <div class="top-item" data-id="${m.id}"><span class="rank">${i + 1}</span>${poster(m, 'w92')}
-      <div><h4>${m.title}</h4><p>${m.release.slice(0, 4)}</p><p>${ic('star', 'st')} ${m.imdb}</p></div></div>`).join('');
+      <div><h4>${m.title}</h4><p>${m.releaseDate.slice(0, 4)}</p><p>${ic('star', 'st')} ${m.imdb}</p></div></div>`).join('');
   }
   function renderDeals() {
     $('#deals').innerHTML = DEALS.map((d) => `<div class="deal"><h4>${d.t}</h4><p>${d.d}</p>
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="chips">${ageChip(m)}${rates(m)}</div>
           <h1>${m.title}</h1>
           <dl class="facts">
-            <div><dt>Director</dt><dd>${m.director}</dd></div><div><dt>Release date</dt><dd>${fmtDate(m.release)}</dd></div>
+            <div><dt>Director</dt><dd>${m.director}</dd></div><div><dt>Release date</dt><dd>${fmtDate(m.releaseDate)}</dd></div>
             <div><dt>Runtime</dt><dd>${m.duration}</dd></div><div><dt>Genre</dt><dd>${m.genre}</dd></div>
           </dl>
           <p class="muted">${m.synopsis}</p>
@@ -266,14 +267,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- init ----------
   (async () => {
     try {
-      const res = await fetch('data/movies.json');
-      if (!res.ok) throw new Error('Could not load data/movies.json');
+      const res = await fetch(API);
+      if (!res.ok) throw new Error(`Could not load movies from ${API} (status ${res.status})`);
       state.movies = await res.json();
       state.feat = state.movies.slice(0, 6);
       renderHot(); renderGenres(); renderRows(); renderTop(); renderDeals(); refresh(); goTo(0);
     } catch (err) {
       console.error(err);
-      $('#grid').innerHTML = '<p class="empty">Could not load movies. Run the project from a local server.</p>';
+      $('#grid').innerHTML = '<p class="empty">Could not load movies. Check that the Spring Boot backend is running on port 8080.</p>';
     }
   })();
 });

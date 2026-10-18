@@ -1,7 +1,7 @@
 package com.alireza.dimmertickbackend.seed;
 
 
-import com.alireza.dimmertickbackend.domain.Movie;
+import com.alireza.dimmertickbackend.domain.model.Movie;
 import com.alireza.dimmertickbackend.repository.MoviesRepository;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.NonNull;

@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.domain;
+package com.alireza.dimmertickbackend.domain.model;
 
 
 import jakarta.persistence.*;
@@ -69,5 +69,10 @@ public class Movie {
     @Column(name = "award", nullable = false, length = 200)
     private List<String> awards = new ArrayList<>();
 
+    @OneToMany(mappedBy = "movie")
+    private List<Ticket> tickets = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "movies")
+    private List<UserAccount> users = new ArrayList<>();
 
 }

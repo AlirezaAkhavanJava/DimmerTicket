@@ -1,6 +1,6 @@
 package com.alireza.dimmertickbackend.repository;
 
-import com.alireza.dimmertickbackend.domain.Movie;
+import com.alireza.dimmertickbackend.domain.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
