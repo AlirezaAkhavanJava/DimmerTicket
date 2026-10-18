@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create account - DimmerTick</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-body">
+
+<main class="auth-page">
+  <a class="auth-logo" href="index.html">Dimmer<b>Tick</b></a>
+
+  <section class="auth-card">
+    <h1>Create your account</h1>
+    <p class="auth-sub">Book tickets and build your watchlist.</p>
+
+    <div id="notice" class="notice" role="status" hidden></div>
+
+    <form id="auth-form" class="auth-form" data-mode="register" novalidate>
+      <div class="auth-row">
+        <label class="field">
+          <span>First name</span>
+          <input type="text" name="firstName" autocomplete="given-name">
+          <small class="field-error" data-for="firstName"></small>
+        </label>
+
+        <label class="field">
+          <span>Last name</span>
+          <input type="text" name="lastName" autocomplete="family-name">
+          <small class="field-error" data-for="lastName"></small>
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Username</span>
+        <input type="text" name="username" autocomplete="username">
+        <small class="field-error" data-for="username"></small>
+      </label>
+
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" autocomplete="email">
+        <small class="field-error" data-for="email"></small>
+      </label>
+
+      <label class="field">
+        <span>Password</span>
+        <input type="password" name="password" autocomplete="new-password">
+        <small class="field-error" data-for="password"></small>
+      </label>
+
+      <label class="field">
+        <span>Confirm password</span>
+        <input type="password" name="confirmPassword" autocomplete="new-password">
+        <small class="field-error" data-for="confirmPassword"></small>
+      </label>
+
+      <button type="submit" id="submit-btn" class="btn-primary">Create account</button>
+    </form>
+
+    <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+  </section>
+</main>
+
+<script src="js/auth.js"></script>
+</body>
+</html>
