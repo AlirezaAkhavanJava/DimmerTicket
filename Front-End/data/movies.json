@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "title": "The Killer",
+        "director": "David Fincher",
+        "poster": "https://image.tmdb.org/t/p/w500/fo7BQf52JywqCCcZ0e8qIByrNQC.jpg",
+        "trailer": "https://www.youtube.com/embed/vs1epO_zLG8",
+        "rating": "6.8",
+        "duration": "118 Min",
+        "genre": "Action, Thriller",
+        "synopsis": "After a fateful near-miss, an assassin battles his employers, and himself, on an international manhunt he insists isn't personal."
+    },
+    {
+        "id": 2,
+        "title": "Dune: Part Two",
+        "director": "Denis Villeneuve",
+        "poster": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+        "trailer": "https://www.youtube.com/embed/Way9Dexny3w",
+        "rating": "8.5",
+        "duration": "166 Min",
+        "genre": "Sci-Fi, Adventure",
+        "synopsis": "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family."
+    },
+    {
+        "id": 3,
+        "title": "Oppenheimer",
+        "director": "Christopher Nolan",
+        "poster": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+        "trailer": "https://www.youtube.com/embed/uYPbbksJxIg",
+        "rating": "8.1",
+        "duration": "180 Min",
+        "genre": "Drama, History",
+        "synopsis": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb."
+    },
+    {
+        "id": 4,
+        "title": "Barbie",
+        "director": "Greta Gerwig",
+        "poster": "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
+        "trailer": "https://www.youtube.com/embed/pBk4NYhWNMM",
+        "rating": "6.8",
+        "duration": "114 Min",
+        "genre": "Comedy, Fantasy",
+        "synopsis": "Barbie suffers a crisis that leads her to question her world and her existence."
+    },
+    {
+        "id": 5,
+        "title": "Deadpool & Wolverine",
+        "director": "Shawn Levy",
+        "poster": "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
+        "trailer": "https://www.youtube.com/embed/73_1biulkYk",
+        "rating": "7.7",
+        "duration": "128 Min",
+        "genre": "Action, Comedy",
+        "synopsis": "Wolverine is recovering from his injuries when he crosses paths with the loudmouth Deadpool. They team up to defeat a common enemy."
+    },
+    {
+        "id": 6,
+        "title": "Inside Out 2",
+        "director": "Kelsey Mann",
+        "poster": "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
+        "trailer": "https://www.youtube.com/embed/LEjhY15eCx0",
+        "rating": "7.6",
+        "duration": "96 Min",
+        "genre": "Animation, Family",
+        "synopsis": "Joy, Sadness, Anger, Fear and Disgust have been running a successful operation by all accounts. However, when Anxiety shows up, they aren't sure how to feel."
+    }
+]

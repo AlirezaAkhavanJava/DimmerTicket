@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaTicket - Movie Details</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">🎟️ CinemaTicket</div>
+            <div class="search-bar">
+                <span>🔍</span>
+                <input type="text" placeholder="Search movies, cinemas...">
+            </div>
+            <div class="header-actions">
+                <button class="btn">📍 New York</button>
+                <button class="btn btn-primary">Login / Register</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Theaters</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Offers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: MAIN PAGE                          -->
+    <!-- ========================================== -->
+    <main class="container" id="main-page">
+        <div class="main-content">
+            <aside class="sidebar">
+                <h2>Top Movies</h2>
+                <div id="top-list"></div>
+            </aside>
+
+            <section class="movie-section">
+                <div class="section-header">
+                    <h2>Currently Showing</h2>
+                </div>
+                <div class="movie-grid" id="movie-grid"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: MOVIE DETAILS PAGE                 -->
+    <!-- ========================================== -->
+    <main class="container" id="details-page">
+        <a id="back-btn" class="back-btn" onclick="goBackToMain()">← Back to Movies</a>
+
+        <section class="movie-hero">
+            <div class="trailer-box">
+                <iframe id="detail-trailer" src="" title="Movie Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <div class="movie-info-hero">
+                <div class="info-text">
+                    <h1 id="detail-title">Movie Title</h1>
+                    <p class="director" id="detail-director">Director: Name</p>
+                    
+                    <div class="meta-tags">
+                        <span id="detail-rating">⭐ 0.0</span>
+                        <span id="detail-duration">0 Min</span>
+                        <span id="detail-genre">Genre</span>
+                    </div>
+
+                    <div class="cast-avatars">
+                        <img src="https://via.placeholder.com/40/555/fff?text=A" alt="Actor">
+                        <img src="https://via.placeholder.com/40/555/fff?text=B" alt="Actor">
+                        <img src="https://via.placeholder.com/40/555/fff?text=C" alt="Actor">
+                    </div>
+
+                    <p class="synopsis" id="detail-synopsis">Movie synopsis will go here...</p>
+                </div>
+                
+                <img id="detail-poster" src="https://via.placeholder.com/200x300/333/fff?text=Poster" alt="Poster" class="poster-hero">
+            </div>
+        </section>
+
+        <section class="date-selector">
+            <h2>Select Date & Buy Ticket</h2>
+            <div class="date-buttons">
+                <div class="date-btn">Monday <span>Oct 27</span></div>
+                <div class="date-btn">Tuesday <span>Oct 28</span></div>
+                <div class="date-btn active">Sunday <span>Oct 26</span></div>
+            </div>
+        </section>
+
+        <section class="cinema-section">
+            <h2>Cinemas in New York</h2>
+            <div class="cinema-card">
+                <div class="cinema-header" onclick="toggleAccordion('cinema1')">
+                    <div>
+                        <div class="cinema-title">AMC Empire 25</div>
+                        <div class="cinema-address">234 W 42nd St, New York, NY 10036</div>
+                    </div>
+                    <div class="showtimes-btn">Showtimes ▼</div>
+                </div>
+                <div class="showtimes-content" id="cinema1">
+                    <button class="time-btn">10:30 AM</button>
+                    <button class="time-btn">1:45 PM</button>
+                    <button class="time-btn">5:00 PM</button>
+                    <button class="time-btn">8:15 PM</button>
+                </div>
+            </div>
+            <div class="cinema-card">
+                <div class="cinema-header" onclick="toggleAccordion('cinema2')">
+                    <div>
+                        <div class="cinema-title">Regal Times Square</div>
+                        <div class="cinema-address">247 W 42nd St, New York, NY 10036</div>
+                    </div>
+                    <div class="showtimes-btn">Showtimes ▼</div>
+                </div>
+                <div class="showtimes-content" id="cinema2">
+                    <button class="time-btn">12:00 PM</button>
+                    <button class="time-btn">3:15 PM</button>
+                    <button class="time-btn">6:30 PM</button>
+                    <button class="time-btn">9:45 PM</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">&copy; 2024 CinemaTicket. All rights reserved.</div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
