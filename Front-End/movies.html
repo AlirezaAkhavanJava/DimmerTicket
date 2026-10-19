@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DimmerTick - Book movie tickets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+
+  <!-- SVG ICON SPRITE: every icon lives here once, used as <use href="#i-name"> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="M3 11l9-8 9 8" />
+        <path d="M5 10v10h14V10" />
+      </symbol>
+      <symbol id="i-film" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M7 3v18M17 3v18M3 8h4M3 12h18M3 16h4M17 8h4M17 16h4" />
+      </symbol>
+      <symbol id="i-compass" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M15.5 8.5l-2 5-5 2 2-5z" />
+      </symbol>
+      <symbol id="i-bookmark" viewBox="0 0 24 24">
+        <path d="M6 3h12v18l-6-4-6 4z" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M21 21l-4.3-4.3" />
+      </symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24">
+        <path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9" />
+        <path d="M10 21a2 2 0 004 0" />
+      </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="M7 4l13 8-13 8z" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M5 12l5 5 9-10" />
+      </symbol>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9z" />
+      </symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24">
+        <path d="M8 4h8v6a4 4 0 01-8 0z" />
+        <path d="M8 6H4v2a4 4 0 004 4M16 6h4v2a4 4 0 01-4 4M12 14v4M8 21h8M10 18h4" />
+      </symbol>
+      <symbol id="i-flame" viewBox="0 0 24 24">
+        <path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4-1-6 1-9z" />
+      </symbol>
+      <symbol id="i-ticket" viewBox="0 0 24 24">
+        <path d="M3 7h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4z" />
+        <path d="M14 7v10" />
+      </symbol>
+      <symbol id="i-percent" viewBox="0 0 24 24">
+        <path d="M19 5L5 19" />
+        <circle cx="7" cy="7" r="2.5" />
+        <circle cx="17" cy="17" r="2.5" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
+      </symbol>
+      <symbol id="i-tomato" viewBox="0 0 24 24">
+        <circle cx="12" cy="14" r="7" />
+        <path d="M12 7c0-2 2-3 3-3M9 8l3 2 3-2" />
+      </symbol>
+      <symbol id="i-left" viewBox="0 0 24 24">
+        <path d="M15 5l-7 7 7 7" />
+      </symbol>
+      <symbol id="i-right" viewBox="0 0 24 24">
+        <path d="M9 5l7 7-7 7" />
+      </symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24">
+        <rect x="9" y="9" width="11" height="11" rx="2" />
+        <path d="M5 15V5a2 2 0 012-2h10" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="topbar">
+    <a class="logo" href="#"><svg class="i">
+        <use href="#i-ticket" />
+      </svg>Dimmer<b>Tick</b></a>
+    <label class="search">
+      <svg class="i">
+        <use href="#i-search" />
+      </svg>
+      <input id="search" type="search" placeholder="Search movies, directors, actors...">
+    </label>
+    <div class="top-actions">
+      <button class="icon-btn" aria-label="Notifications"><svg class="i">
+          <use href="#i-bell" />
+        </svg></button>
+      <div class="account">
+        <button class="user" id="account-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar" id="account-avatar">A</span><span id="account-label">Account</span>
+        </button>
+        <div class="account-menu" id="account-menu" hidden></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="side">
+      <nav id="side-nav" class="side-nav">
+        <a href="#" data-view="home" class="active"><svg class="i">
+            <use href="#i-home" />
+          </svg>Home</a>
+        <a href="#" data-view="movies"><svg class="i">
+            <use href="#i-film" />
+          </svg>Movies</a>
+        <a href="#" data-view="genres"><svg class="i">
+            <use href="#i-compass" />
+          </svg>Genres</a>
+        <a href="#" data-view="mylist"><svg class="i">
+            <use href="#i-bookmark" />
+          </svg>My List</a>
+      </nav>
+      <blockquote class="quote">Great stories stay with you long after the credits roll.</blockquote>
+    </aside>
+
+    <div id="home" class="home">
+      <main class="center">
+        <section class="hero" id="hero">
+          <div class="hero-bg"></div>
+          <div class="hero-body">
+            <span class="tag">Featured</span>
+            <h1 id="hero-title"></h1>
+            <div class="chips" id="hero-chips"></div>
+            <p class="hero-text" id="hero-text"></p>
+            <p class="hero-meta" id="hero-meta"></p>
+            <div class="hero-btns">
+              <button class="btn grad" id="hero-watch"><svg class="i fill">
+                  <use href="#i-play" />
+                </svg>Details &amp; tickets</button>
+              <button class="btn ghost" id="hero-list"></button>
+            </div>
+          </div>
+          <div class="hero-poster" id="hero-poster"></div>
+          <div class="hero-ctrl">
+            <div class="dots" id="dots"></div>
+            <button id="prev" aria-label="Previous"><svg class="i">
+                <use href="#i-left" />
+              </svg></button>
+            <button id="next" aria-label="Next"><svg class="i">
+                <use href="#i-right" />
+              </svg></button>
+          </div>
+        </section>
+
+        <section id="hot-section">
+          <div class="row-head">
+            <h2><svg class="i hot-i">
+                <use href="#i-flame" />
+              </svg>Selling fast</h2><span class="muted small">Demo numbers. Connect to your bookings later.</span>
+          </div>
+          <div class="hot-grid" id="hot"></div>
+        </section>
+
+        <section>
+          <div class="row-head">
+            <h2 id="grid-title">Now showing</h2>
+          </div>
+          <div class="grid" id="grid"></div>
+          <div class="more-wrap"><button class="btn ghost" id="more">Show more movies</button></div>
+        </section>
+
+        <section id="genres-section">
+          <div class="row-head">
+            <h2>Browse by genre</h2><button class="link" id="clear-genre">Clear filter</button>
+          </div>
+          <div class="genres" id="genres"></div>
+        </section>
+
+        <div id="rows"></div>
+      </main>
+
+      <aside class="right">
+        <section class="panel">
+          <h2><svg class="i">
+              <use href="#i-trophy" />
+            </svg>Top rated</h2>
+          <div id="top-list"></div>
+        </section>
+        <section class="panel deals">
+          <h2><svg class="i">
+              <use href="#i-percent" />
+            </svg>Discounts</h2>
+          <div id="deals"></div>
+        </section>
+      </aside>
+    </div>
+
+    <section id="details" class="details" hidden></section>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="js/account.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
