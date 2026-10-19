@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const $ = (s) => document.querySelector(s);
   const IMG = 'https://image.tmdb.org/t/p/';          // official TMDB image CDN (small sizes = fast)
-  const API = 'http://localhost:8080/api/movies';      // Spring Boot backend
+  const API = '/api/movies';      // Spring Boot backend
   const PRICE = 14, MAX_SEATS = 8;
 
   const CINEMAS = [

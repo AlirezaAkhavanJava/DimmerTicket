@@ -113,7 +113,7 @@
 
       if (mode === 'login') {
         localStorage.setItem('dt-user', JSON.stringify(body.user));
-        location.href = 'index.html';
+        location.href = 'movies.html';
       } else {
         location.href = 'login.html?registered=1';
       }

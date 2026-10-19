@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DimmerTick | Book your next movie night</title>
+    <link rel="stylesheet" href="/css/welcome.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body class="wl-body">
+<div class="wl-glow wl-glow-a"></div>
+<div class="wl-glow wl-glow-b"></div>
+
+<main class="wl">
+    <div class="wl-logo">
+        <svg class="logo-anim" viewBox="0 0 64 64" aria-hidden="true">
+            <defs>
+                <clipPath id="tk">
+                    <path d="M12 14H52a4 4 0 0 1 4 4V25a7 7 0 0 0 0 14V46a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V39a7 7 0 0 0 0-14V18a4 4 0 0 1 4-4Z"/>
+                </clipPath>
+            </defs>
+            <rect width="64" height="64" rx="14" fill="#14213d"/>
+            <g class="ticket">
+                <path fill="#fca311" d="M12 14H52a4 4 0 0 1 4 4V25a7 7 0 0 0 0 14V46a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V39a7 7 0 0 0 0-14V18a4 4 0 0 1 4-4Z"/>
+                <g clip-path="url(#tk)">
+                    <rect class="shine" x="0" y="8" width="12" height="48" fill="#ffffff" opacity=".5"/>
+                </g>
+                <path class="play" fill="#14213d" d="M19 24l13 8-13 8Z"/>
+                <path class="tear" stroke="#14213d" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 5" d="M42 20V44" fill="none"/>
+            </g>
+        </svg>
+        <span>Dimmer<b>Tick</b></span>
+    </div>
+
+    <h1 class="wl-title">Your seat is waiting.<br><em>Pick the movie.</em></h1>
+    <p class="wl-sub">Browse what's showing, choose your seats and book tickets in a few clicks.</p>
+
+    <div class="wl-actions">
+        <a class="wl-btn wl-primary" href="/movies">Browse movies</a>
+        <a class="wl-btn wl-ghost" href="/login">Log in</a>
+        <a class="wl-btn wl-ghost" href="/register">Register</a>
+    </div>
+
+    <section class="wl-features">
+        <article>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16M16 4v16"/></svg>
+            <h3>Big catalog</h3>
+            <p>Every genre, with ratings, cast and trailers.</p>
+        </article>
+        <article>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4M4 11h16v5H4zM6 16v3M18 16v3"/></svg>
+            <h3>Choose your seats</h3>
+            <p>See what's free and pick the spot you like.</p>
+        </article>
+        <article>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            <h3>Daily deals</h3>
+            <p>Student, family and early-bird discounts.</p>
+        </article>
+    </section>
+</main>
+</body>
+</html>

@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/DimmerTickBackEndApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/DimmerTickBackEndApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-End/css/welcome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-End/favicon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/movies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +22,13 @@
   </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="60" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,19 +45,28 @@
   "fromUser": false
 }]]></component>
   <component name="ProjectId" id="3KuFByvuSFOG2LdlOVhQLC5Qbbg" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.DimmerTickBackEnd [clean].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DimmerTickBackEndApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "featur",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/mnt/hdd/Home/Programming Files/RealProjects/Dimmertick",
     "node.js.detected.package.eslint": "true",
@@ -57,6 +81,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Front-End/data" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="DimmerTickBackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -82,7 +111,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1792399415800</updated>
-      <workItem from="1792399417141" duration="1242000" />
+      <workItem from="1792399417141" duration="5826000" />
     </task>
     <servers />
   </component>

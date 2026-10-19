@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-253.33813.55">
+    <data-source name="DimmerTick@localhost" uuid="cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0">
+      <database-info product="PostgreSQL" version="18.6 (Debian 18.6-1.pgdg13+2)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.7.13" dbms="POSTGRES" exact-version="18.6" exact-driver-version="42.7">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>postgres</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>
