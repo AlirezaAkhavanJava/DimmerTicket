@@ -127,18 +127,12 @@
 
   // ===========================================================================
   // NORMALIZATION
-  // The API (or a future database entity) may use different field names or miss
-  // some fields. We convert every movie to one safe shape here, so renderers
-  // never see undefined and one bad record never blanks the page.
   // ===========================================================================
-
-  /** First defined value among several possible key names. */
   const pick = (raw, ...keys) => {
     for (const k of keys) if (raw[k] !== undefined && raw[k] !== null && raw[k] !== '') return raw[k];
     return undefined;
   };
 
-  /** Accept an array or a comma-separated string. */
   const toList = (value, splitter = ',') => {
     if (Array.isArray(value)) return value.map((v) => String(v).trim()).filter(Boolean);
     if (typeof value === 'string') return value.split(splitter).map((v) => v.trim()).filter(Boolean);
@@ -150,13 +144,11 @@
     return value === undefined || value === null || value === '' || !Number.isFinite(n) ? null : n;
   };
 
-  /** Poster path must look like "/abc123.jpg" - strips anything unexpected. */
   const cleanPoster = (value) => {
     const p = String(value ?? '').replace(/[^\w/.\-]/g, '');
     return p ? (p.startsWith('/') ? p : `/${p}`) : '';
   };
 
-  /** Only allow https trailers from known hosts; turn watch?v= links into embed links. */
   const cleanTrailer = (value) => {
     if (!value) return '';
     try {
@@ -167,7 +159,6 @@
     } catch { return ''; }
   };
 
-  /** Dates are kept as "YYYY-MM-DD" or an empty string. */
   const cleanDate = (value) => {
     const s = String(value ?? '').slice(0, 10);
     return /^\d{4}-\d{2}-\d{2}$/.test(s) ? s : '';
@@ -176,7 +167,6 @@
   const cleanDuration = (value) =>
       typeof value === 'number' ? `${value} Min` : String(value ?? '').trim();
 
-  /** Returns a safe movie object, or null if the record is unusable (no id or title). */
   function normalizeMovie(raw) {
     if (!raw || typeof raw !== 'object') return null;
 
@@ -203,7 +193,6 @@
       cast,
       awards: Array.isArray(raw.awards) ? toList(raw.awards) : toList(raw.awards, '\n'),
       trailer: cleanTrailer(pick(raw, 'trailer', 'trailerUrl', 'trailer_url')),
-      // Lowercased text used by the search box
       search: [title, director, ...cast].join(' ').toLowerCase()
     };
   }
@@ -226,7 +215,6 @@
     return ((parts[0]?.[0] ?? '') + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
   };
 
-  // Demo numbers - replace with real booking data from the backend.
   const sold = (m) => 35 + (m.id * 29) % 60;
   const lastHour = (m) => 20 + (m.id * 53) % 180;
 
@@ -256,14 +244,20 @@
       `<span class="rate"><b>IMDb</b>${esc(fmtImdb(m))}</span>` +
       `<span class="rate" title="Rotten Tomatoes">${ic('tomato')}${esc(fmtRt(m))}</span>`;
 
-  const card = (m, i = 0) => `
+  // ★ BOOKMARK: every card gets a toggle button in its top-right corner.
+  const card = (m, i = 0) => {
+    const saved = state.list.includes(m.id);
+    return `
     <article class="card" style="--i:${Math.min(i, 12)}" data-id="${m.id}" tabindex="0">
       ${poster(m)}${ageChip(m)}
+      <button class="bookmark${saved ? ' on' : ''}" type="button" data-bookmark="${m.id}"
+              aria-pressed="${saved}" aria-label="${saved ? 'Remove from My List' : 'Add to My List'}"
+              title="${saved ? 'Remove from My List' : 'Add to My List'}">${ic('bookmark')}</button>
       <h3>${esc(m.title)}</h3>
       <p><span>${ic('star', 'st')} ${esc(fmtImdb(m))}</span><span class="rt-s">${ic('tomato')}${esc(fmtRt(m))}</span></p>
     </article>`;
+  };
 
-  /** Count how many movies each genre has: { Action: 5, Drama: 8 }. */
   const genreCounts = () => {
     const count = {};
     state.movies.forEach((m) => genresOf(m).forEach((g) => { count[g] = (count[g] || 0) + 1; }));
@@ -274,7 +268,6 @@
     return { count, names: Object.keys(count).sort((a, b) => count[b] - count[a]) };
   };
 
-  /** Movies that pass the current search, genre and view filters. */
   const visible = () => {
     const q = state.query.toLowerCase();
     return state.movies.filter((m) =>
@@ -298,7 +291,6 @@
     dom.heroMeta.textContent = `Directed by ${m.director}  |  ${fmtDate(m.releaseDate)}  |  ${m.duration || 'N/A'}`;
     dom.heroList.innerHTML = state.list.includes(m.id) ? `${ic('check')}In My List` : `${ic('plus')}My List`;
     dom.dots.innerHTML = state.feat.map((_, i) => `<i class="${i === state.slide ? 'on' : ''}"></i>`).join('');
-    // Restart the CSS "swap" animation
     dom.hero.classList.remove('swap'); void dom.hero.offsetWidth; dom.hero.classList.add('swap');
   }
 
@@ -319,7 +311,7 @@
         : state.genre ? `${state.genre} (${items.length})` : 'Now showing';
 
     let emptyText = 'No movies match your search.';
-    if (state.view === 'mylist') emptyText = 'Your list is empty. Add a movie with the My List button.';
+    if (state.view === 'mylist') emptyText = 'Your list is empty. Add a movie with the bookmark button.';
     else if (!state.movies.length) emptyText = 'No movies available yet.';
 
     dom.grid.innerHTML = list.length
@@ -332,7 +324,6 @@
     const { count, names } = genresByPopularity();
     dom.genres.innerHTML = names.map((g, i) => {
       const pool = state.movies.filter((m) => genresOf(m).includes(g));
-      // Random poster per tile, but stable between re-renders
       const m = state.genreImg[g] || (state.genreImg[g] = pool[Math.floor(Math.random() * pool.length)]);
       return `<button class="genre g${i % 6}${state.genre === g ? ' on' : ''}" data-genre="${esc(g)}">
         ${m.poster ? `<img src="${CONFIG.imgBase}w185${m.poster}" alt="" loading="lazy" decoding="async">` : ''}
@@ -351,7 +342,6 @@
       </div></section>`).join('');
   }
 
-  /** Show or hide a rail's left/right arrows depending on scroll position. */
   const updateArrows = (rail) => {
     const wrap = rail.parentElement;
     const max = rail.scrollWidth - rail.clientWidth;
@@ -372,7 +362,6 @@
       <button class="code" data-code="${esc(d.c)}">${ic('copy')}${esc(d.c)}</button></div>`).join('');
   }
 
-  /** Show or hide sections for the current view/filter, then redraw the grid. */
   function refresh() {
     const filtering = isFiltering();
     dom.hero.hidden = filtering || state.view !== 'home' || !state.feat.length;
@@ -394,9 +383,9 @@
 
   function goTo(n) {
     if (!state.feat.length) return;
-    state.slide = (n + state.feat.length) % state.feat.length;   // wraps around both ways
+    state.slide = (n + state.feat.length) % state.feat.length;
     renderHero();
-    startAutoplay();                                             // restart the timer after any manual move
+    startAutoplay();
   }
 
   // ===========================================================================
@@ -407,7 +396,9 @@
     if (!m) return;
     state.cur = m; state.slot = null; state.seats.clear();
 
-    // Next three days for the date picker
+    // ★ BOOKMARK (DETAILS): Check if this movie is in the list before rendering the button
+    const saved = state.list.includes(m.id);
+
     const days = [0, 1, 2].map((i) => {
       const d = new Date(); d.setDate(d.getDate() + i);
       return `<button class="date${i ? '' : ' on'}">${d.toLocaleDateString('en-US', { weekday: 'long' })}<span>${d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span></button>`;
@@ -422,7 +413,13 @@
       <div class="d-hero">
         <div class="trailer">${trailer}</div>
         <div class="d-info">
-          <div class="chips">${ageChip(m)}${rates(m)}</div>
+          <!-- ★ BOOKMARK (DETAILS): Added the bookmark button next to the chips -->
+          <div class="chips" style="justify-content: space-between; width: 100%; margin-bottom: 8px;">
+            <div>${ageChip(m)}${rates(m)}</div>
+            <button class="btn ${saved ? 'grad' : 'ghost'}" type="button" data-bookmark="${m.id}" aria-pressed="${saved}" style="padding: 8px 16px; border-radius: 20px; font-size: 13px;">
+              ${ic('bookmark')} <span class="bm-text">${saved ? 'In My List' : 'Add to My List'}</span>
+            </button>
+          </div>
           <h1>${esc(m.title)}</h1>
           <dl class="facts">
             <div><dt>Director</dt><dd>${esc(m.director)}</dd></div><div><dt>Release date</dt><dd>${esc(fmtDate(m.releaseDate))}</dd></div>
@@ -457,7 +454,7 @@
 
   function closeDetails() {
     if (dom.details.hidden) return;
-    dom.details.innerHTML = '';          // removing the iframe also stops the trailer
+    dom.details.innerHTML = '';
     dom.details.hidden = true;
     dom.home.hidden = false;
   }
@@ -465,12 +462,10 @@
   // ===========================================================================
   // SEATS
   // ===========================================================================
-
-  /** Deterministic "random" taken seats: the same showtime always gives the same map. */
   function isTaken(row, col, seed) {
     let x = seed ^ Math.imul(row + 1, 0x9E3779B1) ^ Math.imul(col + 1, 0x85EBCA6B);
     x = Math.imul(x ^ (x >>> 15), 0x2C1B3C6D);
-    return ((x ^ (x >>> 12)) >>> 0) % 100 < 28;      // ~28% taken
+    return ((x ^ (x >>> 12)) >>> 0) % 100 < 28;
   }
 
   function showSeats() {
@@ -504,7 +499,6 @@
     $('#book').disabled = !seats.length;
   }
 
-  /** Demo booking. TODO: replace with POST /api/tickets { movieId, cinema, time, seats }. */
   function bookSeats() {
     const booked = [...state.seats].join(', ');
     state.seats.forEach((id) => {
@@ -529,25 +523,53 @@
     if (view === 'genres') dom.genresSection.scrollIntoView({ behavior: 'smooth' });
   }
 
+  // ★ BOOKMARK: Update every bookmark button for a movie in place.
+  // This now handles both the small icon buttons on cards and the text button on the details page.
+  function syncBookmarks(id) {
+    const saved = state.list.includes(id);
+    const label = saved ? 'Remove from My List' : 'Add to My List';
+    $$(`[data-bookmark="${id}"]`).forEach((btn) => {
+      btn.classList.toggle('on', saved);
+      // Toggle the visual style for the details page button
+      if (btn.classList.contains('btn')) {
+        btn.classList.toggle('grad', saved);
+        btn.classList.toggle('ghost', !saved);
+      }
+      btn.setAttribute('aria-pressed', String(saved));
+      btn.setAttribute('aria-label', label);
+      btn.title = label;
+
+      const textSpan = btn.querySelector('.bm-text');
+      if (textSpan) textSpan.textContent = saved ? 'In My List' : 'Add to My List';
+    });
+  }
+
   function toggleList(id) {
-    const i = state.list.indexOf(id);
-    if (i > -1) state.list.splice(i, 1); else state.list.push(id);
+    const removed = state.list.includes(id);
+    // We only refocus if the user clicked the button on a card (to avoid losing focus on the details page)
+    const hadFocus = document.activeElement?.dataset?.bookmark === String(id) && !dom.details.contains(document.activeElement);
+
+    if (removed) state.list.splice(state.list.indexOf(id), 1);
+    else state.list.push(id);
     store.write(CONFIG.listStorageKey, state.list);
+
     renderHero();
     renderGrid();
-    toast(i > -1 ? 'Removed from My List' : 'Added to My List');
+    syncBookmarks(id);
+
+    if (hadFocus) dom.grid.querySelector(`[data-bookmark="${id}"]`)?.focus();
+
+    toast(removed ? 'Removed from My List' : 'Added to My List');
   }
 
   // ===========================================================================
-  // EVENTS (delegated: one listener per container, not per button)
+  // EVENTS
   // ===========================================================================
   function bindEvents() {
-    // Poster images that fail to load are removed (the .pw box shows the title instead)
     document.addEventListener('error', (e) => {
       if (e.target instanceof HTMLImageElement && e.target.closest('.pw, .genre')) e.target.remove();
     }, true);
 
-    // ----- home: rails, cards, genre tiles, deal codes -----
     dom.home.addEventListener('click', (e) => {
       const railBtn = e.target.closest('.rail-btn');
       if (railBtn) {
@@ -555,6 +577,9 @@
         rail.scrollBy({ left: Number(railBtn.dataset.dir) * rail.clientWidth * 0.85, behavior: 'smooth' });
         return;
       }
+      const bookmark = e.target.closest('[data-bookmark]');
+      if (bookmark) return toggleList(Number(bookmark.dataset.bookmark));
+
       const movie = e.target.closest('[data-id]');
       if (movie) return openDetails(Number(movie.dataset.id));
 
@@ -573,20 +598,24 @@
       }
     });
 
-    // Enter key opens a focused card
     dom.home.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') e.target.closest('.card')?.click();
+      if (e.key !== 'Enter') return;
+      if (e.target.closest('button, a, input, select, textarea')) return;
+      e.target.closest('.card')?.click();
     });
 
-    // ----- details: dates, showtimes, seats, booking -----
     dom.details.addEventListener('click', (e) => {
       if (e.target.closest('#back-btn')) return closeDetails();
+
+      // ★ BOOKMARK (DETAILS): Handle clicks on the details page bookmark button
+      const bookmark = e.target.closest('[data-bookmark]');
+      if (bookmark) return toggleList(Number(bookmark.dataset.bookmark));
 
       const date = e.target.closest('.date');
       if (date) {
         $$('.date').forEach((x) => x.classList.remove('on'));
         date.classList.add('on');
-        if (state.slot) showSeats();            // a new date means a new seat map
+        if (state.slot) showSeats();
         return;
       }
 
@@ -616,7 +645,6 @@
       if (e.target.closest('#book')) bookSeats();
     });
 
-    // ----- navigation, search, filters, paging -----
     dom.sideNav.addEventListener('click', (e) => {
       const link = e.target.closest('a');
       if (link) { e.preventDefault(); setView(link.dataset.view); }
@@ -629,25 +657,22 @@
     dom.clearGenre.addEventListener('click', () => { state.genre = ''; renderGenres(); refresh(); });
     dom.more.addEventListener('click', () => { state.shown += CONFIG.pageSize; renderGrid(); });
 
-    // Scroll events do not bubble, so listen in the capture phase
     dom.rows.addEventListener('scroll', (e) => {
       if (e.target.classList?.contains('rail')) updateArrows(e.target);
     }, true);
     window.addEventListener('resize', debounce(updateAllArrows, 100));
 
-    // ----- hero slider -----
     dom.prev.addEventListener('click', () => goTo(state.slide - 1));
     dom.next.addEventListener('click', () => goTo(state.slide + 1));
     dom.heroWatch.addEventListener('click', () => state.feat[state.slide] && openDetails(state.feat[state.slide].id));
     dom.heroList.addEventListener('click', () => state.feat[state.slide] && toggleList(state.feat[state.slide].id));
-    // Pause autoplay while the user reads the hero or the tab is hidden
     dom.hero.addEventListener('mouseenter', stopAutoplay);
     dom.hero.addEventListener('mouseleave', startAutoplay);
     document.addEventListener('visibilitychange', () => (document.hidden ? stopAutoplay() : startAutoplay()));
   }
 
   // ===========================================================================
-  // DATA LOADING
+  // DATA LOADING & INIT
   // ===========================================================================
   async function loadMovies() {
     const controller = new AbortController();
@@ -657,34 +682,14 @@
       if (!res.ok) throw new Error(`Could not load movies from ${CONFIG.api} (HTTP ${res.status})`);
       const data = await res.json();
       if (!Array.isArray(data)) throw new Error('Expected the API to return a JSON array of movies');
-
       const movies = data.map(normalizeMovie).filter(Boolean);
-      const skipped = data.length - movies.length;
-      if (skipped) console.warn(`[DimmerTick] Skipped ${skipped} movie(s) without a valid id or title.`);
       return movies;
     } finally {
       clearTimeout(timeout);
     }
   }
 
-  /** Warn (in the console) about movies that miss fields the UI likes to show. */
-  function auditMovies(movies) {
-    const missing = { poster: 0, releaseDate: 0, imdb: 0, rottenTomatoes: 0, synopsis: 0 };
-    movies.forEach((m) => Object.keys(missing).forEach((k) => {
-      if (m[k] === '' || m[k] === null) missing[k]++;
-    }));
-    const issues = Object.entries(missing).filter(([, n]) => n > 0);
-    if (issues.length) {
-      console.warn('[DimmerTick] Movies with missing fields (check the API JSON field names):',
-          Object.fromEntries(issues));
-    }
-  }
-
-  // ===========================================================================
-  // INIT
-  // ===========================================================================
   async function init() {
-    // If the HTML is missing an element this script needs, say which one.
     const missing = Object.entries(dom).filter(([, el]) => !el).map(([name]) => name);
     if (missing.length) {
       console.error(`[DimmerTick] movies.html is missing elements for: ${missing.join(', ')}`);
@@ -692,11 +697,10 @@
     }
 
     bindEvents();
-    safeRun('deals', renderDeals);          // static, so it shows even if the API fails
+    safeRun('deals', renderDeals);
 
     try {
       state.movies = await loadMovies();
-      auditMovies(state.movies);
     } catch (err) {
       console.error('[DimmerTick]', err);
       const timedOut = err.name === 'AbortError';
@@ -709,7 +713,6 @@
 
     state.feat = state.movies.slice(0, CONFIG.featuredCount);
 
-    // Each step is isolated: one failing section cannot blank the others.
     safeRun('hot', renderHot);
     safeRun('genres', renderGenres);
     safeRun('rows', renderRows);
