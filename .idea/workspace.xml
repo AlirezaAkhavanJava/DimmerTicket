@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/Hall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/HallRow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/MovieStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/SeatTier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/ShowtimeTierPrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0/storage_v2/_src_/database/DimmerTick.L51CJw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0/storage_v2/_src_/database/DimmerTick.L51CJw/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/AppUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/Showtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/Showtime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +122,7 @@
       <workItem from="1792498955991" duration="1370000" />
       <workItem from="1792507110033" duration="1387000" />
       <workItem from="1792514663179" duration="368000" />
-      <workItem from="1792525303016" duration="930000" />
+      <workItem from="1792525303016" duration="2027000" />
     </task>
     <servers />
   </component>
