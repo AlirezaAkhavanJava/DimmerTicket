@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
         user.setEmail(email);
         user.setFullName(request.fullName().trim());
         user.setBirthDate(request.birthDate());
-        user.setPassword(passwordEncoder.encode(request.password()));   // hash, never the real password
-        user.setRole(Role.USER);                                        // everyone starts as a normal user
+        user.setPasswordHash(passwordEncoder.encode(request.password()));   // hash, never the real password
+        user.setRole(Role.USER);                                            // everyone starts as a normal user
 
         return UserResponse.from(userRepository.saveAndFlush(user));
     }
@@ -81,10 +81,10 @@ public class UserServiceImpl implements UserService {
     public void changePassword(UUID id, ChangePasswordRequest request) {
         AppUser user = findUser(id);
 
-        if (!passwordEncoder.matches(request.currentPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(request.currentPassword(), user.getPasswordHash())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Current password is incorrect");
         }
-        user.setPassword(passwordEncoder.encode(request.newPassword()));
+        user.setPasswordHash(passwordEncoder.encode(request.newPassword()));
         userRepository.saveAndFlush(user);
     }
 
@@ -118,19 +118,5 @@ public class UserServiceImpl implements UserService {
     private AppUser findUser(UUID id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public UserResponse login(String email, String password) {
-        String normalized = email == null ? "" : email.trim().toLowerCase();
-        AppUser user = userRepository.findByEmailIgnoreCase(normalized)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.UNAUTHORIZED, "Wrong email or password"));
-
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Wrong email or password");
-        }
-        return UserResponse.from(user);
     }
 }

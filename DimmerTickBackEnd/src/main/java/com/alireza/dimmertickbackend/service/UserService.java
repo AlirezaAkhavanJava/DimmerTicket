@@ -19,5 +19,5 @@ public interface UserService {
 
     List<UserSummary> search(String query);
 
-    UserResponse login(String email, String password);
+    //UserResponse login(String email, String password);
 }

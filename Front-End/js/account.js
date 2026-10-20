@@ -5,24 +5,16 @@
   const avatar = document.getElementById('account-avatar');
   if (!btn || !menu) return;
 
-  function currentUser() {
-    try {
-      return JSON.parse(localStorage.getItem('dt-user'));
-    } catch {
-      return null;
-    }
-  }
+  let user = null;
 
-  // Rebuild the button and menu to match whether someone is signed in.
   function render() {
-    const user = currentUser();
-
     if (user) {
       const name = user.fullName || user.username;
       label.textContent = name;
       avatar.textContent = name.charAt(0).toUpperCase();
       menu.innerHTML = `
         <p class="menu-hint">Signed in as <strong></strong></p>
+        ${user.role === 'ADMIN' ? '<a class="menu-item" href="admin.html">Admin panel</a>' : ''}
         <button class="menu-item" type="button" data-action="logout">Log out</button>`;
       menu.querySelector('strong').textContent = user.username;
     } else {
@@ -34,25 +26,35 @@
     }
   }
 
+  async function loadUser() {
+    try {
+      const res = await DimmerApi.request('/auth/me');
+      user = res.ok ? await res.json() : null;
+    } catch {
+      user = null;
+    }
+    render();
+  }
+
   function setOpen(open) {
     menu.hidden = !open;
     btn.setAttribute('aria-expanded', String(open));
   }
 
   btn.addEventListener('click', (e) => {
-    e.stopPropagation();             // keeps the document listener below from closing it right away
+    e.stopPropagation();
     setOpen(menu.hidden);
   });
 
-  menu.addEventListener('click', (e) => {
+  menu.addEventListener('click', async (e) => {
     if (e.target.closest('[data-action="logout"]')) {
-      localStorage.removeItem('dt-user');
+      await DimmerApi.request('/auth/logout', { method: 'POST' }).catch(() => {});
+      user = null;
       render();
       setOpen(false);
     }
   });
 
-  // Click outside the menu, or press Escape, to close it.
   document.addEventListener('click', (e) => {
     if (!menu.contains(e.target) && !btn.contains(e.target)) setOpen(false);
   });
@@ -61,5 +63,5 @@
   });
 
   setOpen(false);
-  render();
+  loadUser();
 })();

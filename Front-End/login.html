@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log in - DimmerTick</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/auth.css">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in - DimmerTick</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
 <body class="auth-body">
 
 <main class="auth-page">
-  <a class="auth-logo" href="movies.html">Dimmer<b>Tick</b></a>
+    <a class="auth-logo" href="movies.html">Dimmer<b>Tick</b></a>
 
-  <section class="auth-card">
-    <h1>Welcome back</h1>
-    <p class="auth-sub">Log in to manage your tickets and watchlist.</p>
+    <section class="auth-card">
+        <h1>Welcome back</h1>
+        <p class="auth-sub">Log in to manage your tickets and watchlist.</p>
 
-    <div id="notice" class="notice" role="status" hidden></div>
+        <div id="notice" class="notice" role="status" hidden></div>
 
-    <form id="auth-form" class="auth-form" data-mode="login" novalidate>
-      <label class="field">
-        <span>Email</span>
-        <input type="email" name="email" autocomplete="email">
-        <small class="field-error" data-for="email"></small>
-      </label>
+        <form id="auth-form" class="auth-form" data-mode="login" novalidate>
+            <label class="field">
+                <span>Email</span>
+                <input type="email" name="email" autocomplete="email">
+                <small class="field-error" data-for="email"></small>
+            </label>
 
-      <label class="field">
-        <span>Password</span>
-        <input type="password" name="password" autocomplete="current-password">
-        <small class="field-error" data-for="password"></small>
-      </label>
+            <label class="field">
+                <span>Password</span>
+                <input type="password" name="password" autocomplete="current-password">
+                <small class="field-error" data-for="password"></small>
+            </label>
 
-      <button type="submit" id="submit-btn" class="btn-primary">Log in</button>
-    </form>
+            <button type="submit" id="submit-btn" class="btn-primary">Log in</button>
+        </form>
 
-    <p class="auth-switch">New here? <a href="register.html">Create an account</a></p>
-  </section>
+        <p class="auth-switch">New here? <a href="register.html">Create an account</a></p>
+    </section>
 </main>
 
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 </body>
 </html>

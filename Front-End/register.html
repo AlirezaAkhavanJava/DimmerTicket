@@ -24,15 +24,15 @@
     <form id="auth-form" class="auth-form" data-mode="register" novalidate>
       <div class="auth-row">
         <label class="field">
-          <span>First name</span>
-          <input type="text" name="firstName" autocomplete="given-name">
-          <small class="field-error" data-for="firstName"></small>
+          <span>Full name</span>
+          <input type="text" name="fullName" autocomplete="name">
+          <small class="field-error" data-for="fullName"></small>
         </label>
 
         <label class="field">
-          <span>Last name</span>
-          <input type="text" name="lastName" autocomplete="family-name">
-          <small class="field-error" data-for="lastName"></small>
+          <span>Date of birth</span>
+          <input type="date" name="birthDate" autocomplete="bday">
+          <small class="field-error" data-for="birthDate"></small>
         </label>
       </div>
 
@@ -48,11 +48,6 @@
         <small class="field-error" data-for="email"></small>
       </label>
 
-      <label class="field">
-        <span>Birthdate</span>
-        <input type="date" name="birthDate" autocomplete="bday">
-        <small class="field-error" data-for="birthDate"></small>
-      </label>
 
       <label class="field">
         <span>Password</span>
@@ -73,6 +68,8 @@
   </section>
 </main>
 
+
+<script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 </body>
 </html>
