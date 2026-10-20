@@ -18,4 +18,6 @@ public interface UserService {
     void delete(UUID id);
 
     List<UserSummary> search(String query);
+
+    UserResponse login(String email, String password);
 }

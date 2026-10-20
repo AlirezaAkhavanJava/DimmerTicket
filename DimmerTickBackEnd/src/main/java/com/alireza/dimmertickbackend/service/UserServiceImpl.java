@@ -119,4 +119,18 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserResponse login(String email, String password) {
+        String normalized = email == null ? "" : email.trim().toLowerCase();
+        AppUser user = userRepository.findByEmailIgnoreCase(normalized)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.UNAUTHORIZED, "Wrong email or password"));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Wrong email or password");
+        }
+        return UserResponse.from(user);
+    }
 }

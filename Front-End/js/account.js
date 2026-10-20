@@ -18,7 +18,7 @@
     const user = currentUser();
 
     if (user) {
-      const name = user.firstName || user.username;
+      const name = user.fullName || user.username;
       label.textContent = name;
       avatar.textContent = name.charAt(0).toUpperCase();
       menu.innerHTML = `
