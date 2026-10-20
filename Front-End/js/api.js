@@ -27,5 +27,15 @@ window.DimmerApi = (() => {
         });
     }
 
-    return { BASE, request };
+    async function requireLogin() {
+        const res = await request('/auth/me');
+        if (res.ok) return res.json();
+
+        const page = location.pathname.split('/').pop() || 'index.html';
+        const next = encodeURIComponent(page + location.search);
+        location.href = `login.html?next=${next}`;
+        return null;
+    }
+
+    return { BASE, request, requireLogin };
 })();

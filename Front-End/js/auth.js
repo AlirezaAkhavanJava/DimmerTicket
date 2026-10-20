@@ -8,8 +8,18 @@
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const USERNAME_RE = /^[a-zA-Z0-9_]{3,100}$/;
 
+    // Only a plain page name on this site, such as "movies.html" or "index.html?x=1".
+    // Rejects full URLs, "//host" tricks, absolute paths and backslashes.
+    const SAFE_NEXT = /^[a-z0-9_-]+(\.html)?(\?[\w=&%.\-]*)?$/i;
+
     if (mode === 'login' && new URLSearchParams(location.search).has('registered')) {
         showNotice('Account created. You can log in now.', 'success');
+    }
+
+    function safeNext(value) {
+        if (!value || !SAFE_NEXT.test(value)) return null;
+        if (/^(login|register)\.html/i.test(value)) return null;   // never loop back to the forms
+        return value;
     }
 
     function readValues() {
@@ -108,7 +118,8 @@
 
             // The server has already set the session cookie. The browser stores nothing about the user.
             if (mode === 'login') {
-                location.href = data.role === 'ADMIN' ? 'admin.html' : 'index.html';
+                const next = safeNext(new URLSearchParams(location.search).get('next'));
+                location.href = next || (data.role === 'ADMIN' ? 'admin.html' : 'index.html');
             } else {
                 location.href = 'login.html?registered=1';
             }

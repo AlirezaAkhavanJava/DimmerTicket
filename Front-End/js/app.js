@@ -4,8 +4,8 @@
  * Responsibilities:
  *   1. Load movies from the Spring Boot API (GET /api/movies).
  *   2. Normalize every movie so a missing or renamed field can never crash a renderer.
- *   3. Render the home sections (hero slider, selling fast, genres, rows, top rated, deals).
- *   4. Movie details view with showtimes and seat selection (booking is still a demo).
+ *   3. Render the home sections (hero slider, selling fast, genres, rows, top-rated, deals).
+ *   4. Movie details view with showtimes and seat selection. Booking needs a signed-in user.
  *
  * Structure:
  *   CONFIG -> static data -> state -> utilities -> normalization -> renderers
@@ -499,7 +499,17 @@
     $('#book').disabled = !seats.length;
   }
 
-  function bookSeats() {
+  /**
+   * Booking needs a signed-in account. If the visitor isn't signed in, requireLogin()
+   * sends them to login.html?next=movies.html and this function stops there.
+   * The demo still only marks seats as taken; the booking API call replaces that part later.
+   */
+  async function bookSeats() {
+    if (!state.seats.size) return;
+
+    const user = await DimmerApi.requireLogin();
+    if (!user) return;                       // already redirected to the login page
+
     const booked = [...state.seats].join(', ');
     state.seats.forEach((id) => {
       const btn = $(`[data-seat="${id}"]`);
@@ -642,7 +652,7 @@
         return updateSum();
       }
 
-      if (e.target.closest('#book')) bookSeats();
+      if (e.target.closest('#book')) return bookSeats();
     });
 
     dom.sideNav.addEventListener('click', (e) => {

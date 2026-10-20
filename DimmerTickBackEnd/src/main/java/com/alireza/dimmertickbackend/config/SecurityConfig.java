@@ -47,12 +47,32 @@ public class SecurityConfig {
                             res.setContentType("application/json");
                             res.getWriter().write("{\"message\":\"You do not have permission to do this.\"}");
                         }))
+
+                //Authorization
                 .authorizeHttpRequests(auth -> auth
+                        // Public pages: browsing is open to everyone, with or without an account.
+                        .requestMatchers(HttpMethod.GET,
+                                "/", "/index.html",
+                                "/movies", "/movies.html",
+                                "/login", "/login.html",
+                                "/register", "/register.html",
+                                "/admin", "/admin.html",
+                                "/css/**", "/js/**", "/favicon.svg", "/favicon.ico").permitAll()
+                        .requestMatchers("/error").permitAll()
+
+                        // Public API reads: movies, details, trailers, showtimes
                         .requestMatchers(HttpMethod.GET, "/api/movies/**").permitAll()
+
+                        // Auth endpoints
                         .requestMatchers("/api/auth/csrf", "/api/auth/login", "/api/auth/register").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
+
+                        // Admin only
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/users/**").hasRole("ADMIN")   // adjust to the path UserController uses
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
+
+                        // Login required: watchlist and booking, and anything else not listed above
+                        .requestMatchers("/api/watchlist/**", "/api/bookings/**", "/api/tickets/**").authenticated()
                         .anyRequest().authenticated());
 
         return http.build();
