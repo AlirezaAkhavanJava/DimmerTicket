@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="" />
+    <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/PasswordConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/ChangePasswordRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/CreateUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/UpdateUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/UserResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/UserSummary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/exception/ApiExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/AppUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/WatchlistItemRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,8 +31,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Record" />
         <option value="Interface" />
+        <option value="Record" />
+        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
@@ -59,7 +74,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DimmerTickBackEndApplication.executor": "Run",
-    "git-widget-placeholder": "jsonTOcsv",
+    "git-widget-placeholder": "main",
     "ignore.preview.features.used": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/mnt/hdd/Home/Downloads/movies_import.csv",
