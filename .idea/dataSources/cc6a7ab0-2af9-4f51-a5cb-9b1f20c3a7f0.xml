@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.54">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>1154</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1180</IntrospectionStateNumber>
       <ServerVersion>18.6</ServerVersion>
-      <StartupTime>1792488149</StartupTime>
+      <StartupTime>1792513712</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -696,73 +696,73 @@ true posixrules
 13949||10|C|G
 13949||-9223372036854775808|U|G
 13949||10|U|G</Grants>
-      <IntrospectionStateNumber>1154</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1180</IntrospectionStateNumber>
       <ObjectId>16768</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <database id="3" parent="1" name="postgres">
+    <database id="3" parent="1" name="doitlater">
+      <ObjectId>16391</ObjectId>
+      <OwnerName>spring_boot</OwnerName>
+    </database>
+    <database id="4" parent="1" name="postgres">
       <Comment>default administrative connection database</Comment>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
-    </database>
-    <database id="4" parent="1" name="doitlater">
-      <ObjectId>16391</ObjectId>
-      <OwnerName>spring_boot</OwnerName>
     </database>
     <database id="5" parent="1" name="sb">
       <ObjectId>16440</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <role id="6" parent="1" name="pg_database_owner">
+    <role id="6" parent="1" name="pg_checkpoint">
+      <ObjectId>4544</ObjectId>
+    </role>
+    <role id="7" parent="1" name="pg_create_subscription">
+      <ObjectId>6304</ObjectId>
+    </role>
+    <role id="8" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
     </role>
-    <role id="7" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
+    <role id="9" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
     </role>
-    <role id="8" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
+    <role id="10" parent="1" name="pg_maintain">
+      <ObjectId>6337</ObjectId>
     </role>
-    <role id="9" parent="1" name="pg_monitor">
+    <role id="11" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
       <RoleGrants>3374
 3375
 3377</RoleGrants>
     </role>
-    <role id="10" parent="1" name="pg_read_all_settings">
+    <role id="12" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
+    </role>
+    <role id="13" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="11" parent="1" name="pg_read_all_stats">
+    <role id="14" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
     </role>
-    <role id="12" parent="1" name="pg_stat_scan_tables">
-      <ObjectId>3377</ObjectId>
-    </role>
-    <role id="13" parent="1" name="pg_read_server_files">
+    <role id="15" parent="1" name="pg_read_server_files">
       <ObjectId>4569</ObjectId>
     </role>
-    <role id="14" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
+    <role id="16" parent="1" name="pg_signal_autovacuum_worker">
+      <ObjectId>6392</ObjectId>
     </role>
-    <role id="15" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
-    </role>
-    <role id="16" parent="1" name="pg_signal_backend">
+    <role id="17" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
     </role>
-    <role id="17" parent="1" name="pg_checkpoint">
-      <ObjectId>4544</ObjectId>
-    </role>
-    <role id="18" parent="1" name="pg_maintain">
-      <ObjectId>6337</ObjectId>
+    <role id="18" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
     </role>
     <role id="19" parent="1" name="pg_use_reserved_connections">
       <ObjectId>4550</ObjectId>
     </role>
-    <role id="20" parent="1" name="pg_create_subscription">
-      <ObjectId>6304</ObjectId>
+    <role id="20" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
     </role>
-    <role id="21" parent="1" name="pg_signal_autovacuum_worker">
-      <ObjectId>6392</ObjectId>
+    <role id="21" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
     </role>
     <role id="22" parent="1" name="postgres">
       <BypassRls>1</BypassRls>
@@ -4231,11 +4231,11 @@ true posixrules
     <schema id="275" parent="2" name="public">
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <Current>1</Current>
-      <LastIntrospectionL1Xid>1154</LastIntrospectionL1Xid>
-      <LastIntrospectionL2Xid>1154</LastIntrospectionL2Xid>
-      <LastIntrospectionL3Xid>1154</LastIntrospectionL3Xid>
+      <LastIntrospectionL1Xid>1180</LastIntrospectionL1Xid>
+      <LastIntrospectionL2Xid>1180</LastIntrospectionL2Xid>
+      <LastIntrospectionL3Xid>1180</LastIntrospectionL3Xid>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-10-20.12:18:38</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-10-20.19:58:05</LastIntrospectionLocalTimestamp>
       <ObjectId>17025</ObjectId>
       <StateNumber>1122</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4249,7 +4249,25 @@ true posixrules
       <StoredType>bigint|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="277" parent="275" name="movies_id_seq">
+    <sequence id="277" parent="275" name="hall_rows_id_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>17169</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1165</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="278" parent="275" name="halls_id_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>17181</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1166</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="279" parent="275" name="movies_id_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17069</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4258,7 +4276,16 @@ true posixrules
       <StoredType>bigint|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="278" parent="275" name="showtimes_id_seq">
+    <sequence id="280" parent="275" name="showtime_tier_prices_id_seq">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>17192</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>1169</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="281" parent="275" name="showtimes_id_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17081</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4267,7 +4294,7 @@ true posixrules
       <StoredType>bigint|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="279" parent="275" name="tickets_id_seq">
+    <sequence id="282" parent="275" name="tickets_id_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17092</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4276,7 +4303,7 @@ true posixrules
       <StoredType>bigint|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="280" parent="275" name="watchlist_items_id_seq">
+    <sequence id="283" parent="275" name="watchlist_items_id_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17104</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4285,125 +4312,146 @@ true posixrules
       <StoredType>bigint|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="281" parent="275" name="app_users">
+    <table id="284" parent="275" name="app_users">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17026</ObjectId>
       <StateNumber>1146</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="282" parent="275" name="cinemas">
+    <table id="285" parent="275" name="cinemas">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17043</ObjectId>
       <StateNumber>1143</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="283" parent="275" name="movie_awards">
+    <table id="286" parent="275" name="hall_rows">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>17170</ObjectId>
+      <StateNumber>1176</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="287" parent="275" name="halls">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>17182</ObjectId>
+      <StateNumber>1176</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="288" parent="275" name="movie_awards">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17051</ObjectId>
       <StateNumber>1141</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="284" parent="275" name="movie_cast">
+    <table id="289" parent="275" name="movie_cast">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17060</ObjectId>
       <StateNumber>1142</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="285" parent="275" name="movies">
+    <table id="290" parent="275" name="movies">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17070</ObjectId>
-      <StateNumber>1141</StateNumber>
+      <StateNumber>1167</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="286" parent="275" name="showtimes">
+    <table id="291" parent="275" name="showtime_tier_prices">
+      <DetailsLevel>2</DetailsLevel>
+      <ObjectId>17193</ObjectId>
+      <StateNumber>1178</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="292" parent="275" name="showtimes">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17082</ObjectId>
-      <StateNumber>1143</StateNumber>
+      <StateNumber>1171</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="287" parent="275" name="tickets">
+    <table id="293" parent="275" name="tickets">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17093</ObjectId>
       <StateNumber>1145</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="288" parent="275" name="watchlist_items">
+    <table id="294" parent="275" name="watchlist_items">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>17105</ObjectId>
       <StateNumber>1147</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <check id="289" parent="281" name="app_users_role_check">
+    <check id="295" parent="284" name="app_users_role_check">
       <ColNames>role</ColNames>
       <ObjectId>17029</ObjectId>
       <Predicate>(role)::text = ANY ((ARRAY[&apos;ADMIN&apos;::character varying, &apos;USER&apos;::character varying, &apos;STAFF&apos;::character varying, &apos;EXHIBITOR&apos;::character varying])::text[])</Predicate>
       <StateNumber>1125</StateNumber>
     </check>
-    <column id="290" parent="281" name="id">
+    <column id="296" parent="284" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1125</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <column id="291" parent="281" name="birth_date">
+    <column id="297" parent="284" name="birth_date">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1125</StateNumber>
       <StoredType>date|0s</StoredType>
       <TypeId>1082</TypeId>
     </column>
-    <column id="292" parent="281" name="created_at">
+    <column id="298" parent="284" name="created_at">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1125</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="293" parent="281" name="email">
+    <column id="299" parent="284" name="email">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>1125</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="294" parent="281" name="full_name">
+    <column id="300" parent="284" name="full_name">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1125</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="295" parent="281" name="password">
+    <column id="301" parent="284" name="password">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>1125</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="296" parent="281" name="role">
+    <column id="302" parent="284" name="role">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StateNumber>1125</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="297" parent="281" name="username">
+    <column id="303" parent="284" name="username">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StateNumber>1125</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="298" parent="281" name="app_users_pkey">
+    <index id="304" parent="284" name="app_users_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17040</ObjectId>
@@ -4412,7 +4460,7 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="299" parent="281" name="uk4vj92ux8a2eehds1mdvmks473">
+    <index id="305" parent="284" name="uk4vj92ux8a2eehds1mdvmks473">
       <ColNames>email</ColNames>
       <ObjectId>17114</ObjectId>
       <StateNumber>1134</StateNumber>
@@ -4422,7 +4470,7 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="300" parent="281" name="ukspsnwr241e9k9c8p5xl4k45ih">
+    <index id="306" parent="284" name="ukspsnwr241e9k9c8p5xl4k45ih">
       <ColNames>username</ColNames>
       <ObjectId>17116</ObjectId>
       <StateNumber>1136</StateNumber>
@@ -4432,24 +4480,24 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="301" parent="281" name="app_users_pkey">
+    <key id="307" parent="284" name="app_users_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17041</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1125</StateNumber>
       <UnderlyingIndexId>17040</UnderlyingIndexId>
     </key>
-    <key id="302" parent="281" name="uk4vj92ux8a2eehds1mdvmks473">
+    <key id="308" parent="284" name="uk4vj92ux8a2eehds1mdvmks473">
       <ObjectId>17115</ObjectId>
       <StateNumber>1134</StateNumber>
       <UnderlyingIndexId>17114</UnderlyingIndexId>
     </key>
-    <key id="303" parent="281" name="ukspsnwr241e9k9c8p5xl4k45ih">
+    <key id="309" parent="284" name="ukspsnwr241e9k9c8p5xl4k45ih">
       <ObjectId>17117</ObjectId>
       <StateNumber>1136</StateNumber>
       <UnderlyingIndexId>17116</UnderlyingIndexId>
     </key>
-    <column id="304" parent="282" name="id">
+    <column id="310" parent="285" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4458,21 +4506,21 @@ true posixrules
       <SequenceId>17042</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="305" parent="282" name="address">
+    <column id="311" parent="285" name="address">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1126</StateNumber>
       <StoredType>varchar(300)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="306" parent="282" name="name">
+    <column id="312" parent="285" name="name">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1126</StateNumber>
       <StoredType>varchar(150)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="307" parent="282" name="cinemas_pkey">
+    <index id="313" parent="285" name="cinemas_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17049</ObjectId>
@@ -4481,48 +4529,179 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="308" parent="282" name="cinemas_pkey">
+    <key id="314" parent="285" name="cinemas_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17050</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1126</StateNumber>
       <UnderlyingIndexId>17049</UnderlyingIndexId>
     </key>
-    <check id="309" parent="283" name="movie_awards_position_check">
+    <check id="315" parent="286" name="hall_rows_tier_check">
+      <ColNames>tier</ColNames>
+      <ObjectId>17173</ObjectId>
+      <Predicate>(tier)::text = ANY ((ARRAY[&apos;STANDARD&apos;::character varying, &apos;PREMIUM&apos;::character varying, &apos;VIP&apos;::character varying])::text[])</Predicate>
+      <StateNumber>1165</StateNumber>
+    </check>
+    <column id="316" parent="286" name="id">
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1165</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <SequenceId>17169</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="317" parent="286" name="row_label">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1165</StateNumber>
+      <StoredType>varchar(1)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="318" parent="286" name="seat_count">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1165</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="319" parent="286" name="tier">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1165</StateNumber>
+      <StoredType>varchar(20)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="320" parent="286" name="hall_id">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>1165</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="321" parent="286" name="fkq0y8rohpwywcxqkq76kcgy6g7">
+      <ColNames>hall_id</ColNames>
+      <ObjectId>17209</ObjectId>
+      <StateNumber>1176</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17182</RefTableId>
+    </foreign-key>
+    <index id="322" parent="286" name="hall_rows_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17179</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1165</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="323" parent="286" name="uk_hall_row_label">
+      <ColNames>hall_id
+row_label</ColNames>
+      <ObjectId>17205</ObjectId>
+      <StateNumber>1173</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>
+100</CollationIds>
+      <CollationParentNames>
+pg_catalog</CollationParentNames>
+      <CollationNames>
+default</CollationNames>
+    </index>
+    <key id="324" parent="286" name="hall_rows_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17180</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1165</StateNumber>
+      <UnderlyingIndexId>17179</UnderlyingIndexId>
+    </key>
+    <key id="325" parent="286" name="uk_hall_row_label">
+      <ObjectId>17206</ObjectId>
+      <StateNumber>1173</StateNumber>
+      <UnderlyingIndexId>17205</UnderlyingIndexId>
+    </key>
+    <column id="326" parent="287" name="id">
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1166</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <SequenceId>17181</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="327" parent="287" name="name">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1166</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="328" parent="287" name="cinema_id">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1166</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="329" parent="287" name="fkpst04yq0t1iyprvitond7ly34">
+      <ColNames>cinema_id</ColNames>
+      <ObjectId>17214</ObjectId>
+      <StateNumber>1177</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17043</RefTableId>
+    </foreign-key>
+    <index id="330" parent="287" name="halls_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17188</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1166</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="331" parent="287" name="halls_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17189</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1166</StateNumber>
+      <UnderlyingIndexId>17188</UnderlyingIndexId>
+    </key>
+    <check id="332" parent="288" name="movie_awards_position_check">
       <ColNames>position</ColNames>
       <ObjectId>17054</ObjectId>
       <Predicate>&quot;position&quot; &gt;= 0</Predicate>
       <StateNumber>1127</StateNumber>
     </check>
-    <column id="310" parent="283" name="movie_id">
+    <column id="333" parent="288" name="movie_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1127</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="311" parent="283" name="award">
+    <column id="334" parent="288" name="award">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1127</StateNumber>
       <StoredType>varchar(300)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="312" parent="283" name="position">
+    <column id="335" parent="288" name="position">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1127</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="313" parent="283" name="fkchidgld76uisifqi0xc4uq3q5">
+    <foreign-key id="336" parent="288" name="fkchidgld76uisifqi0xc4uq3q5">
       <ColNames>movie_id</ColNames>
       <ObjectId>17122</ObjectId>
       <StateNumber>1141</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>17070</RefTableId>
     </foreign-key>
-    <index id="314" parent="283" name="movie_awards_pkey">
+    <index id="337" parent="288" name="movie_awards_pkey">
       <ColNames>movie_id
 position</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -4532,48 +4711,48 @@ position</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="315" parent="283" name="movie_awards_pkey">
+    <key id="338" parent="288" name="movie_awards_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17059</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1127</StateNumber>
       <UnderlyingIndexId>17058</UnderlyingIndexId>
     </key>
-    <check id="316" parent="284" name="movie_cast_position_check">
+    <check id="339" parent="289" name="movie_cast_position_check">
       <ColNames>position</ColNames>
       <ObjectId>17063</ObjectId>
       <Predicate>&quot;position&quot; &gt;= 0</Predicate>
       <StateNumber>1128</StateNumber>
     </check>
-    <column id="317" parent="284" name="movie_id">
+    <column id="340" parent="289" name="movie_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1128</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="318" parent="284" name="actor_name">
+    <column id="341" parent="289" name="actor_name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1128</StateNumber>
       <StoredType>varchar(200)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="319" parent="284" name="position">
+    <column id="342" parent="289" name="position">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1128</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="320" parent="284" name="fkh3ht4nyhscwpt25ikwdu7lfqj">
+    <foreign-key id="343" parent="289" name="fkh3ht4nyhscwpt25ikwdu7lfqj">
       <ColNames>movie_id</ColNames>
       <ObjectId>17127</ObjectId>
       <StateNumber>1142</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>17070</RefTableId>
     </foreign-key>
-    <index id="321" parent="284" name="movie_cast_pkey">
+    <index id="344" parent="289" name="movie_cast_pkey">
       <ColNames>movie_id
 position</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -4583,14 +4762,14 @@ position</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="322" parent="284" name="movie_cast_pkey">
+    <key id="345" parent="289" name="movie_cast_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17068</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1128</StateNumber>
       <UnderlyingIndexId>17067</UnderlyingIndexId>
     </key>
-    <column id="323" parent="285" name="id">
+    <column id="346" parent="290" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4599,76 +4778,82 @@ position</ColNames>
       <SequenceId>17069</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="324" parent="285" name="age">
+    <column id="347" parent="290" name="age">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>varchar(10)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="325" parent="285" name="director">
+    <column id="348" parent="290" name="director">
       <Position>3</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>varchar(200)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="326" parent="285" name="duration">
+    <column id="349" parent="290" name="duration">
       <Position>4</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>varchar(30)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="327" parent="285" name="genre">
+    <column id="350" parent="290" name="genre">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>varchar(200)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="328" parent="285" name="imdb">
+    <column id="351" parent="290" name="imdb">
       <Position>6</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>double precision|0s</StoredType>
       <TypeId>701</TypeId>
     </column>
-    <column id="329" parent="285" name="poster">
+    <column id="352" parent="290" name="poster">
       <Position>7</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>varchar(200)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="330" parent="285" name="release_date">
+    <column id="353" parent="290" name="release_date">
       <Position>8</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>date|0s</StoredType>
       <TypeId>1082</TypeId>
     </column>
-    <column id="331" parent="285" name="rotten_tomatoes">
+    <column id="354" parent="290" name="rotten_tomatoes">
       <Position>9</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="332" parent="285" name="synopsis">
+    <column id="355" parent="290" name="synopsis">
       <Position>10</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="333" parent="285" name="title">
+    <column id="356" parent="290" name="title">
       <NotNull>1</NotNull>
       <Position>11</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>varchar(200)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="334" parent="285" name="trailer">
+    <column id="357" parent="290" name="trailer">
       <Position>12</Position>
       <StateNumber>1129</StateNumber>
       <StoredType>varchar(300)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="335" parent="285" name="movies_pkey">
+    <column id="358" parent="290" name="hero_position">
+      <Position>13</Position>
+      <StateNumber>1167</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="359" parent="290" name="movies_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17079</ObjectId>
@@ -4677,14 +4862,92 @@ position</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="336" parent="285" name="movies_pkey">
+    <key id="360" parent="290" name="movies_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17080</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1129</StateNumber>
       <UnderlyingIndexId>17079</UnderlyingIndexId>
     </key>
-    <column id="337" parent="286" name="id">
+    <check id="361" parent="291" name="showtime_tier_prices_tier_check">
+      <ColNames>tier</ColNames>
+      <ObjectId>17196</ObjectId>
+      <Predicate>(tier)::text = ANY ((ARRAY[&apos;STANDARD&apos;::character varying, &apos;PREMIUM&apos;::character varying, &apos;VIP&apos;::character varying])::text[])</Predicate>
+      <StateNumber>1169</StateNumber>
+    </check>
+    <column id="362" parent="291" name="id">
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1169</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <SequenceId>17192</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="363" parent="291" name="surcharge">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1169</StateNumber>
+      <StoredType>numeric(8,2 digit)|0s</StoredType>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="364" parent="291" name="tier">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1169</StateNumber>
+      <StoredType>varchar(20)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="365" parent="291" name="showtime_id">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1169</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="366" parent="291" name="fkgfnjk6p1wevovqtix53jg4tan">
+      <ColNames>showtime_id</ColNames>
+      <ObjectId>17219</ObjectId>
+      <StateNumber>1178</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17082</RefTableId>
+    </foreign-key>
+    <index id="367" parent="291" name="showtime_tier_prices_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17201</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1169</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <index id="368" parent="291" name="uk_showtime_tier">
+      <ColNames>showtime_id
+tier</ColNames>
+      <ObjectId>17207</ObjectId>
+      <StateNumber>1175</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>
+100</CollationIds>
+      <CollationParentNames>
+pg_catalog</CollationParentNames>
+      <CollationNames>
+default</CollationNames>
+    </index>
+    <key id="369" parent="291" name="showtime_tier_prices_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17202</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1169</StateNumber>
+      <UnderlyingIndexId>17201</UnderlyingIndexId>
+    </key>
+    <key id="370" parent="291" name="uk_showtime_tier">
+      <ObjectId>17208</ObjectId>
+      <StateNumber>1175</StateNumber>
+      <UnderlyingIndexId>17207</UnderlyingIndexId>
+    </key>
+    <column id="371" parent="292" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4693,49 +4956,70 @@ position</ColNames>
       <SequenceId>17081</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="338" parent="286" name="price">
+    <column id="372" parent="292" name="price">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1130</StateNumber>
       <StoredType>numeric(8,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <column id="339" parent="286" name="starts_at">
+    <column id="373" parent="292" name="starts_at">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1130</StateNumber>
       <StoredType>timestamp(6)|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="340" parent="286" name="cinema_id">
+    <column id="374" parent="292" name="cinema_id">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>1130</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="341" parent="286" name="movie_id">
+    <column id="375" parent="292" name="movie_id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1130</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <foreign-key id="342" parent="286" name="fkkpxwkkoulgq46qc7yxca6tmbj">
+    <column id="376" parent="292" name="base_price">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>1170</StateNumber>
+      <StoredType>numeric(8,2 digit)|0s</StoredType>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="377" parent="292" name="hall_id">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StateNumber>1171</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="378" parent="292" name="fkkpxwkkoulgq46qc7yxca6tmbj">
       <ColNames>cinema_id</ColNames>
       <ObjectId>17132</ObjectId>
       <StateNumber>1143</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>17043</RefTableId>
     </foreign-key>
-    <foreign-key id="343" parent="286" name="fkeltpyuei1d5g3n6ikpsjwwil6">
+    <foreign-key id="379" parent="292" name="fkeltpyuei1d5g3n6ikpsjwwil6">
       <ColNames>movie_id</ColNames>
       <ObjectId>17137</ObjectId>
       <StateNumber>1144</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>17070</RefTableId>
     </foreign-key>
-    <index id="344" parent="286" name="showtimes_pkey">
+    <foreign-key id="380" parent="292" name="fkqsy0b55f69acjhchd4cdms9fj">
+      <ColNames>hall_id</ColNames>
+      <ObjectId>17224</ObjectId>
+      <StateNumber>1179</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17182</RefTableId>
+    </foreign-key>
+    <index id="381" parent="292" name="showtimes_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17090</ObjectId>
@@ -4744,14 +5028,14 @@ position</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="345" parent="286" name="showtimes_pkey">
+    <key id="382" parent="292" name="showtimes_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17091</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1130</StateNumber>
       <UnderlyingIndexId>17090</UnderlyingIndexId>
     </key>
-    <column id="346" parent="287" name="id">
+    <column id="383" parent="293" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4760,56 +5044,56 @@ position</ColNames>
       <SequenceId>17092</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="347" parent="287" name="created_at">
+    <column id="384" parent="293" name="created_at">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1131</StateNumber>
       <StoredType>timestamp(6) with time zone|0s</StoredType>
       <TypeId>1184</TypeId>
     </column>
-    <column id="348" parent="287" name="price_paid">
+    <column id="385" parent="293" name="price_paid">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1131</StateNumber>
       <StoredType>numeric(8,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <column id="349" parent="287" name="seat">
+    <column id="386" parent="293" name="seat">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>1131</StateNumber>
       <StoredType>varchar(5)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="350" parent="287" name="showtime_id">
+    <column id="387" parent="293" name="showtime_id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1131</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="351" parent="287" name="user_id">
+    <column id="388" parent="293" name="user_id">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>1131</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <foreign-key id="352" parent="287" name="fko0u22315eoxdv59tn6wsdn8b1">
+    <foreign-key id="389" parent="293" name="fko0u22315eoxdv59tn6wsdn8b1">
       <ColNames>showtime_id</ColNames>
       <ObjectId>17142</ObjectId>
       <StateNumber>1145</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>17082</RefTableId>
     </foreign-key>
-    <foreign-key id="353" parent="287" name="fka2xjioek01apqyn1bwaymevad">
+    <foreign-key id="390" parent="293" name="fka2xjioek01apqyn1bwaymevad">
       <ColNames>user_id</ColNames>
       <ObjectId>17147</ObjectId>
       <StateNumber>1146</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>17026</RefTableId>
     </foreign-key>
-    <index id="354" parent="287" name="tickets_pkey">
+    <index id="391" parent="293" name="tickets_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17102</ObjectId>
@@ -4818,7 +5102,7 @@ position</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="355" parent="287" name="uk_tickets_showtime_seat">
+    <index id="392" parent="293" name="uk_tickets_showtime_seat">
       <ColNames>showtime_id
 seat</ColNames>
       <ObjectId>17118</ObjectId>
@@ -4832,19 +5116,19 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="356" parent="287" name="tickets_pkey">
+    <key id="393" parent="293" name="tickets_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17103</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1131</StateNumber>
       <UnderlyingIndexId>17102</UnderlyingIndexId>
     </key>
-    <key id="357" parent="287" name="uk_tickets_showtime_seat">
+    <key id="394" parent="293" name="uk_tickets_showtime_seat">
       <ObjectId>17119</ObjectId>
       <StateNumber>1138</StateNumber>
       <UnderlyingIndexId>17118</UnderlyingIndexId>
     </key>
-    <column id="358" parent="288" name="id">
+    <column id="395" parent="294" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4853,42 +5137,42 @@ default</CollationNames>
       <SequenceId>17104</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="359" parent="288" name="added_at">
+    <column id="396" parent="294" name="added_at">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1132</StateNumber>
       <StoredType>timestamp(6) with time zone|0s</StoredType>
       <TypeId>1184</TypeId>
     </column>
-    <column id="360" parent="288" name="movie_id">
+    <column id="397" parent="294" name="movie_id">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1132</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="361" parent="288" name="user_id">
+    <column id="398" parent="294" name="user_id">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>1132</StateNumber>
       <StoredType>uuid|0s</StoredType>
       <TypeId>2950</TypeId>
     </column>
-    <foreign-key id="362" parent="288" name="fkaxup3x0ff8m5rlnng6bn45e25">
+    <foreign-key id="399" parent="294" name="fkaxup3x0ff8m5rlnng6bn45e25">
       <ColNames>movie_id</ColNames>
       <ObjectId>17152</ObjectId>
       <StateNumber>1147</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>17070</RefTableId>
     </foreign-key>
-    <foreign-key id="363" parent="288" name="fk1hsyqtf9f8yl45n5po84r30r7">
+    <foreign-key id="400" parent="294" name="fk1hsyqtf9f8yl45n5po84r30r7">
       <ColNames>user_id</ColNames>
       <ObjectId>17157</ObjectId>
       <StateNumber>1148</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>17026</RefTableId>
     </foreign-key>
-    <index id="364" parent="288" name="watchlist_items_pkey">
+    <index id="401" parent="294" name="watchlist_items_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17112</ObjectId>
@@ -4897,7 +5181,7 @@ default</CollationNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="365" parent="288" name="uk_watchlist_user_movie">
+    <index id="402" parent="294" name="uk_watchlist_user_movie">
       <ColNames>user_id
 movie_id</ColNames>
       <ObjectId>17120</ObjectId>
@@ -4905,14 +5189,14 @@ movie_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="366" parent="288" name="watchlist_items_pkey">
+    <key id="403" parent="294" name="watchlist_items_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17113</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1132</StateNumber>
       <UnderlyingIndexId>17112</UnderlyingIndexId>
     </key>
-    <key id="367" parent="288" name="uk_watchlist_user_movie">
+    <key id="404" parent="294" name="uk_watchlist_user_movie">
       <ObjectId>17121</ObjectId>
       <StateNumber>1140</StateNumber>
       <UnderlyingIndexId>17120</UnderlyingIndexId>

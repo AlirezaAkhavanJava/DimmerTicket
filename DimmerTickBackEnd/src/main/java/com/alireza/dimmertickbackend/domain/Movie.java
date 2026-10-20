@@ -33,22 +33,30 @@ public class Movie {
     @Column(nullable = false, length = 200)
     private String title;
 
-    /** TMDB image path, for example "/abc123.jpg" (the front-end adds the CDN address). */
+    /**
+     * TMDB image path, for example "/abc123.jpg" (the front-end adds the CDN address).
+     */
     @Column(length = 200)
     private String poster;
 
-    /** Genres in one text value, for example "Action, Drama". */
+    /**
+     * Genres in one text value, for example "Action, Drama".
+     */
     @Column(nullable = false, length = 200)
     private String genre;
 
-    /** Age rating, for example "PG-13" or "R". */
+    /**
+     * Age rating, for example "PG-13" or "R".
+     */
     @Column(nullable = false, length = 10)
     private String age;
 
     @Column(length = 200)
     private String director;
 
-    /** Runtime as shown on the page, for example "180 Min". */
+    /**
+     * Runtime as shown on the page, for example "180 Min".
+     */
     @Column(length = 30)
     private String duration;
 
@@ -58,7 +66,9 @@ public class Movie {
     @Column(columnDefinition = "text")
     private String synopsis;
 
-    /** YouTube embed link. Empty when there is no trailer yet. */
+    /**
+     * YouTube embed link. Empty when there is no trailer yet.
+     */
     @Column(length = 300)
     private String trailer;
 
@@ -83,6 +93,15 @@ public class Movie {
     @OrderColumn(name = "position")
     @Column(name = "award", nullable = false, length = 300)
     private List<String> awards = new ArrayList<>();
+
+    // ADMIN PANEL AND HERO SLIDER
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private MovieStatus status = MovieStatus.DRAFT;
+
+    /** null = not in the hero. 1, 2, 3... = position in the slider. */
+    @Column(name = "hero_position")
+    private Integer heroPosition;
 
 
 }
