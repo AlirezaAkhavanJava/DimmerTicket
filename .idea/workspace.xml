@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/MovieController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/MovieResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/MovieService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/MovieServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0/storage_v2/_src_/database/DimmerTick.L51CJw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc6a7ab0-2af9-4f51-a5cb-9b1f20c3a7f0/storage_v2/_src_/database/DimmerTick.L51CJw/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +109,7 @@
       <workItem from="1792412423578" duration="2048000" />
       <workItem from="1792422685913" duration="4993000" />
       <workItem from="1792493172965" duration="5503000" />
-      <workItem from="1792498955991" duration="922000" />
+      <workItem from="1792498955991" duration="1370000" />
     </task>
     <servers />
   </component>
