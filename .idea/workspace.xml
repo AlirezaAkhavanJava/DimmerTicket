@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/booking/BookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/AcceptTermsRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/booking/BookingDtos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/legal/Terms.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/ShowtimeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/ShowtimeTierPriceRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/TicketRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/booking/SeatService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/js/terms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/terms.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/web/PageRoutesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/web/PageRoutesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/user/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/user/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-End/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/css/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-End/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/auth.js" afterDir="false" />
-    </list>
+    <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
