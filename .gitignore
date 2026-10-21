@@ -1,0 +1,62 @@
+# ===== Maven build output =====
+target/
+*.class
+dependency-reduced-pom.xml
+
+# Keep mvnw and mvnw.cmd in Git. Ignore only the downloaded wrapper jar.
+.mvn/wrapper/maven-wrapper.jar
+
+# ===== Spring Boot =====
+HELP.md
+logs/
+*.log
+
+# Local config and secrets: never commit passwords or keys
+application-local.properties
+application-*.local.properties
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.jks
+
+# ===== IntelliJ IDEA =====
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ===== Eclipse / Spring Tool Suite =====
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# ===== VS Code =====
+.vscode/
+
+# ===== NetBeans =====
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# ===== Operating system files =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+.directory
+.Trash-*
+*~
+.*.swp
+
+# ===== Front-end tooling (in case you add npm later) =====
+node_modules/
+npm-debug.log*
