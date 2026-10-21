@@ -14,5 +14,6 @@ public class PageRoutesConfig implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("forward:/login.html");
         registry.addViewController("/register").setViewName("forward:/register.html");
         registry.addViewController("/admin").setViewName("forward:/admin.html");
+        registry.addViewController("/account").setViewName("forward:/account.html");
     }
 }

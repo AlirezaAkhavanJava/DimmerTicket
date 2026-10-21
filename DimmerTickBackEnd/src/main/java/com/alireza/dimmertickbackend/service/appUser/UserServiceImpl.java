@@ -1,6 +1,7 @@
 package com.alireza.dimmertickbackend.service.appUser;
 
 import com.alireza.dimmertickbackend.domain.AppUser;
+import com.alireza.dimmertickbackend.domain.AvatarCatalog;
 import com.alireza.dimmertickbackend.domain.stat.Role;
 import com.alireza.dimmertickbackend.domain.dto.*;
 import com.alireza.dimmertickbackend.repository.AppUserRepository;
@@ -48,7 +49,8 @@ public class UserServiceImpl implements UserService {
         user.setFullName(request.fullName().trim());
         user.setBirthDate(request.birthDate());
         user.setPasswordHash(passwordEncoder.encode(request.password()));   // hash, never the real password
-        user.setRole(Role.USER);                                            // everyone starts as a normal user
+        user.setRole(Role.USER); // everyone starts as a normal user
+        user.setAvatar(AvatarCatalog.DEFAULT);
 
         return UserResponse.from(userRepository.saveAndFlush(user));
     }
@@ -113,6 +115,17 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(UserSummary::from)
                 .toList();
+    }
+
+    @Override
+    @Transactional
+    public UserResponse setAvatar(UUID id, String avatar) {
+        if (!AvatarCatalog.isValid(avatar)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "That avatar does not exist.");
+        }
+        AppUser user = findUser(id);
+        user.setAvatar(avatar);
+        return UserResponse.from(userRepository.saveAndFlush(user));
     }
 
     private AppUser findUser(UUID id) {

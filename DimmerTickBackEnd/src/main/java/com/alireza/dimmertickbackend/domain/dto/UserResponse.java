@@ -1,16 +1,21 @@
 package com.alireza.dimmertickbackend.domain.dto;
 
 import com.alireza.dimmertickbackend.domain.AppUser;
+import com.alireza.dimmertickbackend.domain.AvatarCatalog;
 import com.alireza.dimmertickbackend.domain.stat.Role;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
+/** What the browser may see about an account. The password hash is never included. */
 public record UserResponse(
         UUID id,
         String username,
         String fullName,
         String email,
-        Role role
+        LocalDate birthDate,
+        Role role,
+        String avatar
 ) {
         public static UserResponse from(AppUser user) {
                 return new UserResponse(
@@ -18,7 +23,9 @@ public record UserResponse(
                         user.getUsername(),
                         user.getFullName(),
                         user.getEmail(),
-                        user.getRole()
+                        user.getBirthDate(),
+                        user.getRole(),
+                        user.getAvatar() != null ? user.getAvatar() : AvatarCatalog.DEFAULT
                 );
         }
 }
