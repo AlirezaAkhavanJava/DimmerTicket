@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/profile.css">
 </head>
-<body class="profile-body">
+<body class="acct-body">
 
 <header class="topbar">
-    <a class="logo" href="/movies">Dimmer<b>Tick</b></a>
+    <div class="topbar-left">
+        <button class="back-btn" id="back-btn" type="button">← Back</button>
+        <a class="logo" href="/movies">Dimmer<b>Tick</b></a>
+    </div>
     <div class="top-actions">
         <div class="account">
             <button class="user" id="account-btn" type="button" aria-haspopup="true" aria-expanded="false">
@@ -25,68 +28,250 @@
     </div>
 </header>
 
-<main class="profile">
+<div class="acct-shell">
 
-    <section class="card-panel profile-hero">
-        <div id="profile-avatar" class="profile-avatar" aria-hidden="true"></div>
-        <div>
-            <h1 id="profile-name">Loading…</h1>
-            <p id="profile-username" class="muted">@…</p>
-            <span id="profile-role" class="role-badge">Member</span>
+    <aside class="acct-side">
+        <div class="acct-mini">
+            <div id="profile-avatar" class="profile-avatar" aria-hidden="true"></div>
+            <div>
+                <strong id="profile-name">Loading…</strong>
+                <span id="profile-username" class="muted small">@…</span>
+                <span id="profile-role" class="role-badge">Member</span>
+            </div>
         </div>
-    </section>
 
-    <div id="profile-notice" class="notice" role="status" hidden></div>
+        <nav class="acct-nav" aria-label="Account sections">
+            <button type="button" data-go="overview">🏠 Overview</button>
+            <button type="button" data-go="settings">⚙️ Settings</button>
+            <button type="button" data-go="comments">💬 Comments</button>
+            <button type="button" data-go="tickets">🎫 Tickets</button>
+            <button type="button" data-go="friends">👥 Friends</button>
+            <button type="button" data-go="gifts">🎁 Gifts</button>
+            <button type="button" data-go="wallet">👛 Wallet</button>
+            <button type="button" data-go="levels">🏅 Member level</button>
+        </nav>
+    </aside>
 
-    <section class="card-panel">
-        <h2>Choose your avatar</h2>
-        <p class="muted small">Your avatar appears in the top bar and on your profile.</p>
-        <div id="avatar-grid" class="avatar-grid"></div>
-    </section>
+    <main class="acct-main">
+        <div id="profile-notice" class="notice" role="status" hidden></div>
 
-    <section class="card-panel">
-        <h2>Personal details</h2>
-        <form id="profile-form" class="auth-form" novalidate>
-            <label class="field">
-                <span>Full name</span>
-                <input type="text" name="fullName" autocomplete="name">
-            </label>
-            <label class="field">
-                <span>Date of birth</span>
-                <input type="date" name="birthDate" autocomplete="bday">
-            </label>
-            <label class="field">
-                <span>Email (contact support to change it)</span>
-                <input type="email" name="email" readonly>
-            </label>
-            <button type="submit" class="btn-primary">Save details</button>
-        </form>
-    </section>
+        <!-- OVERVIEW -->
+        <section class="panel" data-panel="overview">
+            <div class="card-panel level-card" id="ov-level"></div>
+            <div class="stat-grid" id="ov-stats"></div>
+            <div class="card-panel">
+                <h2>Active ticket</h2>
+                <div id="ov-active"></div>
+            </div>
+            <div class="card-panel">
+                <h2>Recent activity</h2>
+                <ul class="list" id="ov-activity"></ul>
+            </div>
+        </section>
 
-    <section class="card-panel">
-        <h2>Change password</h2>
-        <form id="password-form" class="auth-form" novalidate>
-            <label class="field">
-                <span>Current password</span>
-                <input type="password" name="currentPassword" autocomplete="current-password">
-            </label>
-            <label class="field">
-                <span>New password</span>
-                <input type="password" name="newPassword" autocomplete="new-password">
-            </label>
-            <label class="field">
-                <span>Confirm new password</span>
-                <input type="password" name="confirmPassword" autocomplete="new-password">
-            </label>
-            <button type="submit" class="btn-primary">Change password</button>
-        </form>
-    </section>
+        <!-- SETTINGS -->
+        <section class="panel" data-panel="settings" hidden>
+            <div class="card-panel">
+                <h2>Choose your avatar</h2>
+                <p class="muted small">Shown in the top bar and on your profile.</p>
+                <div id="avatar-grid" class="avatar-grid"></div>
+            </div>
 
-</main>
+            <div class="card-panel">
+                <h2>Personal details</h2>
+                <form id="profile-form" class="auth-form" novalidate>
+                    <label class="field">
+                        <span>Full name</span>
+                        <input type="text" name="fullName" autocomplete="name">
+                    </label>
+                    <label class="field">
+                        <span>Date of birth</span>
+                        <input type="date" name="birthDate" autocomplete="bday">
+                    </label>
+                    <label class="field">
+                        <span>Email (contact support to change it)</span>
+                        <input type="email" name="email" readonly>
+                    </label>
+                    <button type="submit" class="btn-primary">Save details</button>
+                </form>
+            </div>
+
+            <div class="card-panel">
+                <h2>Change password</h2>
+                <form id="password-form" class="auth-form" novalidate>
+                    <label class="field">
+                        <span>Current password</span>
+                        <input type="password" name="currentPassword" autocomplete="current-password">
+                    </label>
+                    <label class="field">
+                        <span>New password</span>
+                        <input type="password" name="newPassword" autocomplete="new-password">
+                    </label>
+                    <label class="field">
+                        <span>Confirm new password</span>
+                        <input type="password" name="confirmPassword" autocomplete="new-password">
+                    </label>
+                    <button type="submit" class="btn-primary">Change password</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- COMMENTS -->
+        <section class="panel" data-panel="comments" hidden>
+            <div class="card-panel">
+                <h2>Write a comment</h2>
+                <form id="comment-form" class="auth-form" novalidate>
+                    <div class="auth-row">
+                        <label class="field">
+                            <span>Movie</span>
+                            <select id="comment-movie" name="movie">
+                                <option value="">Loading movies…</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Your rating</span>
+                            <select name="rating">
+                                <option value="5">★★★★★  Loved it</option>
+                                <option value="4">★★★★☆  Good</option>
+                                <option value="3">★★★☆☆  Okay</option>
+                                <option value="2">★★☆☆☆  Weak</option>
+                                <option value="1">★☆☆☆☆  Not for me</option>
+                            </select>
+                        </label>
+                    </div>
+                    <label class="field">
+                        <span>Comment</span>
+                        <textarea name="text" rows="3" maxlength="500" placeholder="What did you think?"></textarea>
+                    </label>
+                    <button type="submit" class="btn-primary">Post comment</button>
+                </form>
+            </div>
+
+            <div class="card-panel">
+                <h2>Your comments</h2>
+                <ul class="list" id="comment-list"></ul>
+            </div>
+        </section>
+
+        <!-- TICKETS -->
+        <section class="panel" data-panel="tickets" hidden>
+            <div class="card-panel">
+                <h2>Your tickets</h2>
+                <p class="muted small">Upcoming tickets are highlighted in green.</p>
+                <div id="ticket-list"></div>
+            </div>
+        </section>
+
+        <!-- FRIENDS -->
+        <section class="panel" data-panel="friends" hidden>
+            <div class="card-panel">
+                <h2>Add a friend</h2>
+                <form id="add-friend-form" class="inline-form" novalidate>
+                    <input name="username" placeholder="Username" autocomplete="off">
+                    <button type="submit" class="btn-small">Follow</button>
+                </form>
+                <p class="muted small">Searching every member needs the server. For now, you can follow the suggestions below.</p>
+            </div>
+
+            <div class="card-panel">
+                <h2>Following</h2>
+                <ul class="list" id="friend-list"></ul>
+            </div>
+
+            <div class="card-panel">
+                <h2>Suggested members</h2>
+                <ul class="list" id="suggest-list"></ul>
+            </div>
+        </section>
+
+        <!-- GIFTS -->
+        <section class="panel" data-panel="gifts" hidden>
+            <div class="card-panel">
+                <h2>Send a gift</h2>
+                <p class="muted small">Gifts are paid from your wallet and can only go to people you follow.</p>
+                <form id="gift-form" class="auth-form" novalidate>
+                    <div class="auth-row">
+                        <label class="field">
+                            <span>To</span>
+                            <select id="gift-to" name="to"></select>
+                        </label>
+                        <label class="field">
+                            <span>Amount (USD)</span>
+                            <input type="number" name="amount" min="1" max="200" step="0.5" value="10">
+                        </label>
+                    </div>
+                    <label class="field">
+                        <span>Message (optional)</span>
+                        <input type="text" name="message" maxlength="200" placeholder="Enjoy the movie!">
+                    </label>
+                    <button type="submit" class="btn-primary">Send gift</button>
+                </form>
+            </div>
+
+            <div class="two-col">
+                <div class="card-panel">
+                    <h2>Received</h2>
+                    <ul class="list" id="gift-received"></ul>
+                </div>
+                <div class="card-panel">
+                    <h2>Sent</h2>
+                    <ul class="list" id="gift-sent"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- WALLET -->
+        <section class="panel" data-panel="wallet" hidden>
+            <div class="card-panel">
+                <p class="muted small">Available balance</p>
+                <p class="big-num" id="wallet-balance">$0.00</p>
+                <p class="muted small">Use it for tickets and gifts.</p>
+            </div>
+
+            <div class="card-panel">
+                <h2>Add money</h2>
+                <div class="chips-row">
+                    <button type="button" class="chip" data-topup="10">$10</button>
+                    <button type="button" class="chip" data-topup="20">$20</button>
+                    <button type="button" class="chip" data-topup="50">$50</button>
+                    <button type="button" class="chip" data-topup="100">$100</button>
+                </div>
+                <form id="topup-form" class="inline-form" novalidate>
+                    <input type="number" name="amount" min="1" max="500" step="1" placeholder="Other amount">
+                    <button type="submit" class="btn-small">Add</button>
+                </form>
+                <p class="muted small">Demo mode: no real payment is taken. The payment provider comes later.</p>
+            </div>
+
+            <div class="card-panel">
+                <h2>Transactions</h2>
+                <ul class="list" id="wallet-tx"></ul>
+            </div>
+        </section>
+
+        <!-- LEVELS -->
+        <section class="panel" data-panel="levels" hidden>
+            <div class="card-panel" id="level-current"></div>
+
+            <div class="card-panel">
+                <h2>Levels</h2>
+                <ul class="list" id="level-table"></ul>
+            </div>
+
+            <div class="card-panel">
+                <h2>How to earn points</h2>
+                <ul class="list" id="earn-table"></ul>
+            </div>
+        </section>
+
+    </main>
+</div>
 
 <script src="js/api.js"></script>
 <script src="js/avatars.js"></script>
 <script src="js/account.js"></script>
+<script src="js/account-data.js"></script>
+<script src="js/sections.js"></script>
 <script src="js/profile.js"></script>
 </body>
 </html>

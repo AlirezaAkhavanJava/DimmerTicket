@@ -1,24 +1,23 @@
 (() => {
     const $ = (id) => document.getElementById(id);
+    const SECTIONS = ['overview', 'settings', 'comments', 'tickets', 'friends', 'gifts', 'wallet', 'levels'];
+
     const avatarGrid = $('avatar-grid');
-    const bigAvatar = $('profile-avatar');
-    const notice = $('profile-notice');
-    const detailsForm = $('profile-form');
-    const passwordForm = $('password-form');
-    if (!avatarGrid || !window.AvatarArt) return;
+    if (!avatarGrid || !window.AvatarArt || !window.AccountData || !window.AccountSections) return;
 
     let me = null;
     let noticeTimer = null;
 
     function say(text, type) {
-        notice.textContent = text;                 // textContent, never innerHTML
-        notice.className = `notice ${type}`;
-        notice.hidden = false;
+        const el = $('profile-notice');
+        el.textContent = text;                       // textContent, never innerHTML
+        el.className = `notice ${type}`;
+        el.hidden = false;
         clearTimeout(noticeTimer);
-        noticeTimer = setTimeout(() => { notice.hidden = true; }, 4000);
+        noticeTimer = setTimeout(() => { el.hidden = true; }, 4000);
     }
 
-    // Every request returns the same shape: { ok, status, data }.
+    // Every call returns { ok, status, data }, so callers don't repeat the parsing.
     async function api(path, options) {
         try {
             const res = await DimmerApi.request(path, options);
@@ -38,73 +37,84 @@
 
     const currentAvatar = () => (me && me.avatar) || AvatarArt.DEFAULT;
 
-    function renderAvatars() {
-        AvatarArt.render(bigAvatar, currentAvatar());
-        avatarGrid.innerHTML = AvatarArt.keys.map((key) => {
-            const selected = key === currentAvatar();
-            return `<button type="button" class="avatar-choice${selected ? ' on' : ''}"
-                      data-avatar="${key}" aria-pressed="${selected}"
-                      aria-label="${AvatarArt.label(key)} avatar"></button>`;
-        }).join('');
-        avatarGrid.querySelectorAll('[data-avatar]').forEach((btn) => {
-            AvatarArt.render(btn, btn.dataset.avatar);
+    // ---------- Navigation ----------
+    function show(name) {
+        const key = SECTIONS.includes(name) ? name : 'overview';
+        document.querySelectorAll('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== key; });
+        document.querySelectorAll('.acct-nav [data-go]').forEach((b) => {
+            b.classList.toggle('on', b.dataset.go === key);
         });
+        window.scrollTo({ top: 0 });
     }
 
-    function renderProfile() {
+    document.addEventListener('click', (e) => {
+        const go = e.target.closest('[data-go]');
+        if (go) location.hash = go.dataset.go;
+    });
+    window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+
+
+    // Goes back to the main
+    // Always return to the movies page.
+    $('back-btn').addEventListener('click', () => {
+        location.href = '/movies';
+    });
+
+    // ---------- Profile header and settings ----------
+    function renderHero() {
+        AvatarArt.render($('profile-avatar'), currentAvatar());
         $('profile-name').textContent = me.fullName;
         $('profile-username').textContent = `@${me.username}`;
         $('profile-role').textContent = me.role === 'ADMIN' ? 'Administrator' : 'Member';
+    }
 
-        const f = detailsForm.elements;
+    function renderAvatarGrid() {
+        const key = currentAvatar();
+        avatarGrid.innerHTML = AvatarArt.keys.map((k) => `
+      <button type="button" class="avatar-choice${k === key ? ' on' : ''}" data-avatar="${k}"
+              aria-pressed="${k === key}" aria-label="${AvatarArt.label(k)} avatar"></button>`).join('');
+        avatarGrid.querySelectorAll('[data-avatar]').forEach((b) => AvatarArt.render(b, b.dataset.avatar));
+    }
+
+    function renderDetails() {
+        const f = $('profile-form').elements;
         f.namedItem('fullName').value = me.fullName ?? '';
         f.namedItem('birthDate').value = me.birthDate ?? '';
         f.namedItem('email').value = me.email ?? '';
-
-        renderAvatars();
     }
 
-    async function load() {
-        const { ok, status, data } = await api('/account');
-        if (status === 401) {
-            location.href = '/login?next=account.html';
-            return;
-        }
-        if (!ok) {
-            say(data.message || 'Could not load your account.', 'error');
-            return;
-        }
-        setUser(data);
-        renderProfile();
+    function renderAll() {
+        renderHero();
+        renderAvatarGrid();
+        renderDetails();
+        AccountSections.renderAll(me);
     }
 
     avatarGrid.addEventListener('click', async (e) => {
         const choice = e.target.closest('[data-avatar]');
         if (!choice || choice.dataset.avatar === currentAvatar()) return;
 
-        avatarGrid.querySelectorAll('button').forEach((b) => (b.disabled = true));
+        avatarGrid.querySelectorAll('button').forEach((b) => { b.disabled = true; });
         const { ok, data } = await api('/account/avatar', {
             method: 'PUT',
             body: { avatar: choice.dataset.avatar },
         });
-        avatarGrid.querySelectorAll('button').forEach((b) => (b.disabled = false));
+        avatarGrid.querySelectorAll('button').forEach((b) => { b.disabled = false; });
 
-        if (!ok) {
-            say(data.message || 'Could not save your avatar.', 'error');
-            return;
-        }
+        if (!ok) return say(data.message || 'Could not save your avatar.', 'error');
         setUser(data);
-        renderAvatars();
+        renderHero();
+        renderAvatarGrid();
         say('Avatar updated.', 'success');
     });
 
-    detailsForm.addEventListener('submit', async (e) => {
+    $('profile-form').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const f = detailsForm.elements;
+        const f = e.currentTarget.elements;
         const body = {
             fullName: f.namedItem('fullName').value.trim(),
             birthDate: f.namedItem('birthDate').value,
-            email: me.email,                          // email changes come later, with a re-login
+            email: me.email,                           // email changes come later, with a re-login
         };
         if (!body.fullName) return say('Full name is required.', 'error');
         if (!body.birthDate) return say('Date of birth is required.', 'error');
@@ -113,13 +123,13 @@
         if (!ok) return say(data.message || 'Could not save your details.', 'error');
 
         setUser(data);
-        renderProfile();
+        renderAll();
         say('Details saved.', 'success');
     });
 
-    passwordForm.addEventListener('submit', async (e) => {
+    $('password-form').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const f = passwordForm.elements;
+        const f = e.currentTarget.elements;
         const currentPassword = f.namedItem('currentPassword').value;
         const newPassword = f.namedItem('newPassword').value;
         const confirm = f.namedItem('confirmPassword').value;
@@ -127,9 +137,7 @@
         if (newPassword.length < 8 || newPassword.length > 72) {
             return say('The new password must be 8 to 72 characters.', 'error');
         }
-        if (newPassword !== confirm) {
-            return say('The new passwords do not match.', 'error');
-        }
+        if (newPassword !== confirm) return say('The new passwords do not match.', 'error');
 
         const { ok, data } = await api('/account/password', {
             method: 'POST',
@@ -137,9 +145,38 @@
         });
         if (!ok) return say(data.message || 'Could not change your password.', 'error');
 
-        passwordForm.reset();
+        e.currentTarget.reset();
         say('Password changed.', 'success');
     });
 
+    // ---------- Movie titles for the comment form ----------
+    async function loadMovies() {
+        try {
+            const res = await DimmerApi.request('/movies');
+            if (!res.ok) return;
+            const list = await res.json();
+            AccountSections.setMovies(list.map((m) => m.title));
+        } catch {
+            // The dropdown stays empty; the rest of the page still works.
+        }
+    }
+
+    // ---------- Boot ----------
+    AccountSections.init({ say });
+
+    async function load() {
+        const { ok, status, data } = await api('/account');
+        if (status === 401) {
+            location.href = '/login?next=account';
+            return;
+        }
+        if (!ok) return say(data.message || 'Could not load your account.', 'error');
+
+        setUser(data);
+        renderAll();
+        loadMovies();
+    }
+
+    show(location.hash.slice(1));
     load();
 })();

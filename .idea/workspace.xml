@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/user/AccountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/AvatarCatalog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/AvatarRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/account.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/css/profile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/js/avatars.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/js/profile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-End/js/account-data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Front-End/js/sections.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/web/PageRoutesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/web/PageRoutesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/appUser/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/appUser/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/appUser/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/appUser/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-End/js/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/css/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +28,9 @@
         <option value="Enum" />
         <option value="Record" />
         <option value="Class" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -80,7 +71,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DimmerTickBackEndApplication.executor": "Run",
-    "git-widget-placeholder": "userPanel",
+    "git-widget-placeholder": "account",
     "ignore.preview.features.used": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/mnt/hdd/Home/Downloads/movies_import.csv",
