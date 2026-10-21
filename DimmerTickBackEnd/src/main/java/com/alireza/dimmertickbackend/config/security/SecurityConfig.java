@@ -50,13 +50,14 @@ public class SecurityConfig {
                                 "/movies", "/movies.html",
                                 "/login", "/login.html",
                                 "/register", "/register.html",
+                                "/terms", "/terms.html",
                                 "/account", "/account.html",
                                 "/admin", "/admin.html",
                                 "/css/**", "/js/**", "/favicon.svg", "/favicon.ico").permitAll()
-                        .requestMatchers("/error").permitAll()
 
                         // Public API reads
-                        .requestMatchers(HttpMethod.GET, "/api/movies/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,
+                                "/api/movies/**", "/api/showtimes/**", "/api/stats/**").permitAll()
 
                         // Auth endpoints
                         .requestMatchers("/api/auth/csrf", "/api/auth/login", "/api/auth/register").permitAll()
@@ -83,7 +84,9 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
-    /** Not signed in: say what they should do, based on what they tried to reach. */
+    /**
+     * Not signed in: say what they should do, based on what they tried to reach.
+     */
     private AuthenticationEntryPoint loginRequired() {
         return (request, response, ex) -> writeError(response, HttpServletResponse.SC_UNAUTHORIZED,
                 loginMessage(request.getRequestURI()));

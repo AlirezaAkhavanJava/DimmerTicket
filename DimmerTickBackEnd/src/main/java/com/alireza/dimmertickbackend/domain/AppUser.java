@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -60,4 +61,11 @@ public class AppUser {
     /** One of the keys in AvatarCatalog. Null for accounts created before avatars existed. */
     @Column(length = 40)
     private String avatar;
+
+    /** The agreement version this user accepted. Booking requires it to equal Terms.CURRENT_VERSION. */
+    @Column(name = "terms_version", length = 20)
+    private String termsVersion;
+
+    @Column(name = "terms_accepted_at")
+    private Instant termsAcceptedAt;
 }

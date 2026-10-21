@@ -35,6 +35,7 @@ dependency-reduced-pom.xml
 *.ipr
 out/
 
+
 ### Eclipse / STS ###
 .apt_generated/
 .classpath

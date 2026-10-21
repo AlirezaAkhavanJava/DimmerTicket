@@ -37,7 +37,7 @@
 
     function safeNext(value) {
         if (!value || !SAFE_NEXT.test(value)) return null;
-        if (/^(login|register)(\.html)?(\?|$)/i.test(value)) return null;   // never loop back to the forms
+        if (/^(login|register|terms)(\.html)?(\?|$)/i.test(value)) return null;
         return value;
     }
 
@@ -65,7 +65,13 @@
         if (!EMAIL_RE.test(v.email)) errors.email = 'Enter a valid email address.';
 
         if (mode === 'login') {
-            if (!v.password) errors.password = 'Enter your password.';
+            // Everyone must accept the current agreement before booking.
+            const next = safeNext(params.get('next'));
+            if (!data.termsAccepted) {
+                location.href = '/terms' + (next ? `?next=${encodeURIComponent(next)}` : '');
+            } else {
+                location.href = next || (data.role === 'ADMIN' ? '/admin' : '/movies');
+            }
         } else {
             if (v.password.length < 8) errors.password = 'Use at least 8 characters.';
             else if (v.password.length > 72) errors.password = 'Use at most 72 characters.';
