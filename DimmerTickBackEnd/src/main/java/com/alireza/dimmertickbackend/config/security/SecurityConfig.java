@@ -50,6 +50,7 @@ public class SecurityConfig {
                                 "/movies", "/movies.html",
                                 "/login", "/login.html",
                                 "/register", "/register.html",
+                                "/account", "/account.html",
                                 "/admin", "/admin.html",
                                 "/css/**", "/js/**", "/favicon.svg", "/favicon.ico").permitAll()
                         .requestMatchers("/error").permitAll()

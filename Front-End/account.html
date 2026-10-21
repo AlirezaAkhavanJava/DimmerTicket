@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My account - DimmerTick</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body class="profile-body">
+
+<header class="topbar">
+    <a class="logo" href="/movies">Dimmer<b>Tick</b></a>
+    <div class="top-actions">
+        <div class="account">
+            <button class="user" id="account-btn" type="button" aria-haspopup="true" aria-expanded="false">
+                <span class="avatar" id="account-avatar">A</span><span id="account-label">Account</span>
+            </button>
+            <div class="account-menu" id="account-menu" hidden></div>
+        </div>
+    </div>
+</header>
+
+<main class="profile">
+
+    <section class="card-panel profile-hero">
+        <div id="profile-avatar" class="profile-avatar" aria-hidden="true"></div>
+        <div>
+            <h1 id="profile-name">Loading…</h1>
+            <p id="profile-username" class="muted">@…</p>
+            <span id="profile-role" class="role-badge">Member</span>
+        </div>
+    </section>
+
+    <div id="profile-notice" class="notice" role="status" hidden></div>
+
+    <section class="card-panel">
+        <h2>Choose your avatar</h2>
+        <p class="muted small">Your avatar appears in the top bar and on your profile.</p>
+        <div id="avatar-grid" class="avatar-grid"></div>
+    </section>
+
+    <section class="card-panel">
+        <h2>Personal details</h2>
+        <form id="profile-form" class="auth-form" novalidate>
+            <label class="field">
+                <span>Full name</span>
+                <input type="text" name="fullName" autocomplete="name">
+            </label>
+            <label class="field">
+                <span>Date of birth</span>
+                <input type="date" name="birthDate" autocomplete="bday">
+            </label>
+            <label class="field">
+                <span>Email (contact support to change it)</span>
+                <input type="email" name="email" readonly>
+            </label>
+            <button type="submit" class="btn-primary">Save details</button>
+        </form>
+    </section>
+
+    <section class="card-panel">
+        <h2>Change password</h2>
+        <form id="password-form" class="auth-form" novalidate>
+            <label class="field">
+                <span>Current password</span>
+                <input type="password" name="currentPassword" autocomplete="current-password">
+            </label>
+            <label class="field">
+                <span>New password</span>
+                <input type="password" name="newPassword" autocomplete="new-password">
+            </label>
+            <label class="field">
+                <span>Confirm new password</span>
+                <input type="password" name="confirmPassword" autocomplete="new-password">
+            </label>
+            <button type="submit" class="btn-primary">Change password</button>
+        </form>
+    </section>
+
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/avatars.js"></script>
+<script src="js/account.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>
