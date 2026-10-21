@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.service;
+package com.alireza.dimmertickbackend.service.watchlist;
 
 import com.alireza.dimmertickbackend.domain.dto.MovieResponse;
 

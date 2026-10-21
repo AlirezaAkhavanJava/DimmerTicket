@@ -4,7 +4,7 @@ import com.alireza.dimmertickbackend.domain.dto.CreateUserRequest;
 import com.alireza.dimmertickbackend.domain.dto.LoginRequest;
 import com.alireza.dimmertickbackend.domain.dto.UserResponse;
 import com.alireza.dimmertickbackend.repository.AppUserRepository;
-import com.alireza.dimmertickbackend.service.UserService;
+import com.alireza.dimmertickbackend.service.appUser.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

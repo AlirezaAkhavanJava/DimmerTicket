@@ -1,7 +1,7 @@
 package com.alireza.dimmertickbackend.controller;
 
 import com.alireza.dimmertickbackend.domain.dto.MovieResponse;
-import com.alireza.dimmertickbackend.service.MovieService;
+import com.alireza.dimmertickbackend.service.Movie.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

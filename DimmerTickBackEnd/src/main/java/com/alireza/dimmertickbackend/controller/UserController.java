@@ -2,7 +2,7 @@ package com.alireza.dimmertickbackend.controller;
 
 
 import com.alireza.dimmertickbackend.domain.dto.*;
-import com.alireza.dimmertickbackend.service.UserService;
+import com.alireza.dimmertickbackend.service.appUser.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

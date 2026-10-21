@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.service;
+package com.alireza.dimmertickbackend.service.appUser;
 
 import com.alireza.dimmertickbackend.domain.dto.*;
 import jakarta.validation.Valid;

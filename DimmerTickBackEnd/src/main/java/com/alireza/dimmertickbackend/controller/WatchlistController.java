@@ -3,7 +3,7 @@ package com.alireza.dimmertickbackend.controller;
 import com.alireza.dimmertickbackend.domain.AppUser;
 import com.alireza.dimmertickbackend.domain.dto.MovieResponse;
 import com.alireza.dimmertickbackend.repository.AppUserRepository;
-import com.alireza.dimmertickbackend.service.WatchlistService;
+import com.alireza.dimmertickbackend.service.watchlist.WatchlistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

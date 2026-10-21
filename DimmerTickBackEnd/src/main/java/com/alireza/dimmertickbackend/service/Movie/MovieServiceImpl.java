@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.service;
+package com.alireza.dimmertickbackend.service.Movie;
 
 import com.alireza.dimmertickbackend.domain.dto.MovieResponse;
 import com.alireza.dimmertickbackend.repository.MovieRepository;
