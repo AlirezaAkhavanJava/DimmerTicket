@@ -1,23 +1,48 @@
+# ---------- Project ----------
 HELP.md
+
+# ---------- Maven / Java / Spring Boot ----------
 target/
-.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
+*.class
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+*.hprof
+
+dependency-reduced-pom.xml
+*.versionsBackup
+*.releaseBackup
+.mvn/timing.properties
+
+# Maven wrapper: normally commit mvnw, mvnw.cmd, and .mvn/wrapper/maven-wrapper.properties.
+# If you do NOT want to commit the wrapper jar, uncomment the next line:
+# .mvn/wrapper/maven-wrapper.jar
+
+# ---------- IDE / Editors ----------
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
+out/
+
+### Eclipse / STS ###
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
 
 ### NetBeans ###
 /nbproject/private/
@@ -25,9 +50,80 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
+
+# ---------- OS files ----------
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.directory
+.Trash-*
+
+# ---------- Logs / temp files ----------
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.swp
+*.swo
+*~
+*.orig
+*.rej
+*.bak
+*.pid
+*.seed
+*.pid.lock
+
+# ---------- Environment / secrets ----------
+.env
+.env.*
+!.env.example
+
+# Keep local Spring config out of Git if it contains credentials/secrets.
+application-local.properties
+application-*.local.properties
+
+*.secret
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+
+# ---------- Front-end / static site ----------
+node_modules/
+bower_components/
+jspm_packages/
+web_modules/
+.npm
+.yarn
+.pnp.*
+dist/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist/
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+*.local
+*.tsbuildinfo
+
+# ---------- Test / coverage ----------
+coverage/
+.nyc_output/
+*.lcov
