@@ -28,14 +28,18 @@ public class AppUser {
     @Column(nullable = false, unique = true, updatable = false, length = 100)
     private String username;
 
-    /** A BCrypt hash, never the raw password. There is deliberately no toString() here. */
+    /**
+     * A BCrypt hash, never the raw password. There is deliberately no toString() here.
+     */
     @Column(name = "password_hash", nullable = false, length = 100)
     private String passwordHash;
 
     @Column(nullable = false, length = 250)
     private String fullName;
 
-    /** Needed for age-rated movies such as R. */
+    /**
+     * Needed for age-rated movies such as R.
+     */
     @Column(nullable = false)
     private LocalDate birthDate;
 
@@ -50,4 +54,10 @@ public class AppUser {
     void onCreate() {
         createdAt = LocalDateTime.now();
     }
+
+
+    // Avatar
+    /** One of the keys in AvatarCatalog. Null for accounts created before avatars existed. */
+    @Column(length = 40)
+    private String avatar;
 }

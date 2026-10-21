@@ -7,22 +7,31 @@
 
   let user = null;
 
+  function showAvatar(key) {
+    if (window.AvatarArt) {
+      AvatarArt.render(avatar, key);
+    } else {
+      avatar.textContent = 'A';
+    }
+  }
+
   function render() {
     if (user) {
       const name = user.fullName || user.username;
       label.textContent = name;
-      avatar.textContent = name.charAt(0).toUpperCase();
+      showAvatar(user.avatar || (window.AvatarArt ? AvatarArt.DEFAULT : null));
       menu.innerHTML = `
         <p class="menu-hint">Signed in as <strong></strong></p>
-        ${user.role === 'ADMIN' ? '<a class="menu-item" href="admin.html">Admin panel</a>' : ''}
+        <a class="menu-item" href="/account">My account</a>
+        ${user.role === 'ADMIN' ? '<a class="menu-item" href="/admin">Admin panel</a>' : ''}
         <button class="menu-item" type="button" data-action="logout">Log out</button>`;
       menu.querySelector('strong').textContent = user.username;
     } else {
       label.textContent = 'Account';
       avatar.textContent = 'A';
       menu.innerHTML = `
-        <a class="menu-item" href="login.html">Log in</a>
-        <a class="menu-item" href="register.html">Create account</a>`;
+        <a class="menu-item" href="/login">Log in</a>
+        <a class="menu-item" href="/register">Create account</a>`;
     }
   }
 
@@ -49,9 +58,15 @@
   menu.addEventListener('click', async (e) => {
     if (e.target.closest('[data-action="logout"]')) {
       await DimmerApi.request('/auth/logout', { method: 'POST' }).catch(() => {});
-      // Reload so the page drops everything it loaded for this account, such as My List.
+      // Reload so the page drops everything it loaded for this account.
       location.reload();
     }
+  });
+
+  // The profile page dispatches this after the avatar or name changes.
+  window.addEventListener('dt:user-changed', (e) => {
+    user = e.detail;
+    render();
   });
 
   document.addEventListener('click', (e) => {
