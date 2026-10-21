@@ -49,9 +49,8 @@
   menu.addEventListener('click', async (e) => {
     if (e.target.closest('[data-action="logout"]')) {
       await DimmerApi.request('/auth/logout', { method: 'POST' }).catch(() => {});
-      user = null;
-      render();
-      setOpen(false);
+      // Reload so the page drops everything it loaded for this account, such as My List.
+      location.reload();
     }
   });
 

@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/WatchlistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/WatchlistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/exception/ApiExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/exception/ApiExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/css/auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/css/auth.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/js/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/account.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Front-End/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-End/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-End/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-End/movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/movies.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +120,7 @@
       <workItem from="1792507110033" duration="1387000" />
       <workItem from="1792514663179" duration="368000" />
       <workItem from="1792525303016" duration="5153000" />
-      <workItem from="1792566666843" duration="2807000" />
+      <workItem from="1792566666843" duration="3844000" />
     </task>
     <servers />
   </component>
