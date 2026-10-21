@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.controller;
+package com.alireza.dimmertickbackend.controller.user;
 
 
 import com.alireza.dimmertickbackend.domain.dto.*;

@@ -1,5 +1,6 @@
 package com.alireza.dimmertickbackend.domain;
 
+import com.alireza.dimmertickbackend.domain.stat.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

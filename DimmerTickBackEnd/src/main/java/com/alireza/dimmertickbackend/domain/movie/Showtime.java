@@ -1,5 +1,6 @@
-package com.alireza.dimmertickbackend.domain;
+package com.alireza.dimmertickbackend.domain.movie;
 
+import com.alireza.dimmertickbackend.domain.ticketHall.Hall;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

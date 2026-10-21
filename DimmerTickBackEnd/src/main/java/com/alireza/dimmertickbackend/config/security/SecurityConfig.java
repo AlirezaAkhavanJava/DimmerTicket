@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.config;
+package com.alireza.dimmertickbackend.config.security;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;

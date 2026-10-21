@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.domain;
+package com.alireza.dimmertickbackend.domain.ticketHall;
 
 import jakarta.persistence.*;
 import lombok.Getter;

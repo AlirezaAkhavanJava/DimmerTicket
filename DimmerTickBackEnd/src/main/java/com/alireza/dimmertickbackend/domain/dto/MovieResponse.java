@@ -2,7 +2,7 @@ package com.alireza.dimmertickbackend.domain.dto;
 
 
 
-import com.alireza.dimmertickbackend.domain.Movie;
+import com.alireza.dimmertickbackend.domain.movie.Movie;
 
 import java.time.LocalDate;
 import java.util.List;

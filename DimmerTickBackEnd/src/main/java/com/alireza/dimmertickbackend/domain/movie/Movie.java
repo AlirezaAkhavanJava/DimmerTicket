@@ -1,5 +1,6 @@
-package com.alireza.dimmertickbackend.domain;
+package com.alireza.dimmertickbackend.domain.movie;
 
+import com.alireza.dimmertickbackend.domain.stat.MovieStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

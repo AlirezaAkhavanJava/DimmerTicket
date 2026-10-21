@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.config;
+package com.alireza.dimmertickbackend.config.security;
 
 
 import org.springframework.context.annotation.Bean;

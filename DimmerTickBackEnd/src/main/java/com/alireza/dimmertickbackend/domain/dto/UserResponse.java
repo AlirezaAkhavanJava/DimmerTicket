@@ -1,7 +1,7 @@
 package com.alireza.dimmertickbackend.domain.dto;
 
 import com.alireza.dimmertickbackend.domain.AppUser;
-import com.alireza.dimmertickbackend.domain.Role;
+import com.alireza.dimmertickbackend.domain.stat.Role;
 
 import java.util.UUID;
 

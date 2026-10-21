@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.domain;
+package com.alireza.dimmertickbackend.domain.stat;
 
 public enum MovieStatus {
     DRAFT,         // being edited, not on the site

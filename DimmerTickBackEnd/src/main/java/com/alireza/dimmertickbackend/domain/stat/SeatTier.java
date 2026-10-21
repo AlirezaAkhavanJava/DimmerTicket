@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.domain;
+package com.alireza.dimmertickbackend.domain.stat;
 
 public enum SeatTier {
     STANDARD,

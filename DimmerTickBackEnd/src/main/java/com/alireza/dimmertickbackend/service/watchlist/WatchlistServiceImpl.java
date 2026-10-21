@@ -1,8 +1,8 @@
 package com.alireza.dimmertickbackend.service.watchlist;
 
 import com.alireza.dimmertickbackend.domain.AppUser;
-import com.alireza.dimmertickbackend.domain.Movie;
-import com.alireza.dimmertickbackend.domain.WatchlistItem;
+import com.alireza.dimmertickbackend.domain.movie.Movie;
+import com.alireza.dimmertickbackend.domain.movie.WatchlistItem;
 import com.alireza.dimmertickbackend.domain.dto.MovieResponse;
 import com.alireza.dimmertickbackend.repository.AppUserRepository;
 import com.alireza.dimmertickbackend.repository.MovieRepository;

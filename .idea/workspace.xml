@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/web/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/PageRoutesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/web/PageRoutesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/PasswordConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/security/PasswordConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/config/web/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/security/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/watchlist/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/WatchlistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/controller/watchlist/WatchlistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/movie/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/Showtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/movie/Showtime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/ShowtimeTierPrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/movie/ShowtimeTierPrice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/movie/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/WatchlistItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/movie/WatchlistItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/MovieResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/domain/dto/MovieResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/MovieRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/WatchlistItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/repository/WatchlistItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/watchlist/WatchlistServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimmerTickBackEnd/src/main/java/com/alireza/dimmertickbackend/service/watchlist/WatchlistServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,40 +66,43 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.DimmerTickBackEnd [clean].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.DimmerTickBackEndApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "ignore.preview.features.used": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/mnt/hdd/Home/Downloads/movies_import.csv",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.DimmerTickBackEnd [clean].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DimmerTickBackEndApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/mnt/hdd/Home/Downloads/movies_import.csv&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Front-End/data" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.alireza.dimmertickbackend.config.security" />
     </key>
   </component>
   <component name="RunManager">
@@ -119,7 +139,7 @@
       <workItem from="1792514663179" duration="368000" />
       <workItem from="1792525303016" duration="5153000" />
       <workItem from="1792566666843" duration="3844000" />
-      <workItem from="1792585401284" duration="980000" />
+      <workItem from="1792585401284" duration="1317000" />
     </task>
     <servers />
   </component>

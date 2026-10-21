@@ -1,7 +1,7 @@
 package com.alireza.dimmertickbackend.repository;
 
 
-import com.alireza.dimmertickbackend.domain.WatchlistItem;
+import com.alireza.dimmertickbackend.domain.movie.WatchlistItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.alireza.dimmertickbackend.controller;
+package com.alireza.dimmertickbackend.controller.security;
 
 import com.alireza.dimmertickbackend.domain.dto.CreateUserRequest;
 import com.alireza.dimmertickbackend.domain.dto.LoginRequest;

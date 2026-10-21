@@ -1,7 +1,7 @@
 package com.alireza.dimmertickbackend.service.appUser;
 
 import com.alireza.dimmertickbackend.domain.AppUser;
-import com.alireza.dimmertickbackend.domain.Role;
+import com.alireza.dimmertickbackend.domain.stat.Role;
 import com.alireza.dimmertickbackend.domain.dto.*;
 import com.alireza.dimmertickbackend.repository.AppUserRepository;
 import com.alireza.dimmertickbackend.repository.WatchlistItemRepository;
