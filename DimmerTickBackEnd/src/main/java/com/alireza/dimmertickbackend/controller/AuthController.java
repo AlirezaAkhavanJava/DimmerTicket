@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Locale;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -34,11 +35,10 @@ public class AuthController {
     private final UserService userService;
     private final AppUserRepository userRepository;
 
-    /** The front-end calls this before any change request. Reading the token makes Spring send the cookie. */
+
     @GetMapping("/csrf")
-    public ResponseEntity<Void> csrf(CsrfToken token) {
-        token.getToken();
-        return ResponseEntity.noContent().build();
+    public Map<String, String> csrf(CsrfToken token) {
+        return Map.of("token", token.getToken());
     }
 
     @PostMapping("/register")
@@ -89,4 +89,7 @@ public class AuthController {
         SecurityContextHolder.clearContext();
         return ResponseEntity.noContent().build();
     }
+
+
+
 }

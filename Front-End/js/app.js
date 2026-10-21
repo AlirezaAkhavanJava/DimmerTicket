@@ -30,10 +30,14 @@
     listStorageKey: 'dt-list'                // localStorage key for "My List"
   });
 
+
+
   // Only embed trailers from these hosts (blocks arbitrary iframes from bad data).
   const TRAILER_HOSTS = new Set([
     'www.youtube.com', 'youtube.com', 'www.youtube-nocookie.com', 'youtube-nocookie.com'
   ]);
+
+
 
   // ===========================================================================
   // STATIC DATA (move to the backend later: /api/cinemas, /api/deals)
@@ -42,11 +46,15 @@
     { n: 'AMC Empire 25', a: '234 W 42nd St, New York, NY 10036', t: ['10:30 AM', '1:45 PM', '5:00 PM', '8:15 PM'] },
     { n: 'Regal Times Square', a: '247 W 42nd St, New York, NY 10036', t: ['12:00 PM', '3:15 PM', '6:30 PM', '9:45 PM'] }
   ];
+
+
   const DEALS = [
     { t: 'Student Tuesday', d: '30% off every ticket with a valid student ID.', c: 'STUDENT30' },
     { t: 'Family Weekend', d: 'Book 3 tickets, get the 4th free (PG and below).', c: 'FAMILY4' },
     { t: 'Early Bird', d: '25% off all shows before 12 PM.', c: 'EARLY25' }
   ];
+
+
   const RULES = [
     ['clock', 'Arrive 15 minutes early. Late entry is not guaranteed once the film starts.'],
     ['shield', 'Age ratings are enforced. R-rated films need an adult or valid ID.'],
@@ -54,6 +62,8 @@
     ['bell', 'Keep phones silent. Recording or filming is not allowed.'],
     ['film', 'No outside food or drinks. Snacks are sold at the counter.']
   ];
+
+
 
   // ===========================================================================
   // UTILITIES
@@ -108,7 +118,7 @@
   // ===========================================================================
   // STATE
   // ===========================================================================
-  const savedList = store.read(CONFIG.listStorageKey, []);
+
   const state = {
     movies: [],            // normalized movies from the API
     feat: [],              // movies shown in the hero slider
@@ -122,7 +132,7 @@
     seats: new Set(),      // selected seat ids
     shown: CONFIG.pageSize,// how many movies the main grid shows
     genreImg: {},          // stable random poster per genre tile
-    list: Array.isArray(savedList) ? savedList.map(Number).filter(Number.isFinite) : []
+    list: [],
   };
 
   // ===========================================================================
@@ -177,6 +187,8 @@
     const genres = toList(pick(raw, 'genre', 'genres'));
     const director = String(pick(raw, 'director') ?? 'Unknown').trim();
     const cast = toList(pick(raw, 'cast', 'actors'));
+
+
 
     return {
       id,
@@ -331,6 +343,8 @@
     }).join('');
   }
 
+
+
   function renderRows() {
     const { names } = genresByPopularity();
     dom.rows.innerHTML = names.slice(0, 6).map((g) => `
@@ -342,14 +356,21 @@
       </div></section>`).join('');
   }
 
+
+
+
   const updateArrows = (rail) => {
     const wrap = rail.parentElement;
     const max = rail.scrollWidth - rail.clientWidth;
     wrap.querySelector('.l').hidden = rail.scrollLeft < 8;
     wrap.querySelector('.r').hidden = rail.scrollLeft > max - 8;
   };
+
+
   const updateAllArrows = () =>
       requestAnimationFrame(() => $$('.rail').forEach(updateArrows));
+
+
 
   function renderTop() {
     dom.topList.innerHTML = [...state.movies].sort((a, b) => (b.imdb ?? 0) - (a.imdb ?? 0)).slice(0, 5).map((m, i) => `
@@ -357,10 +378,14 @@
       <div><h4>${esc(m.title)}</h4><p>${esc(fmtYear(m))}</p><p>${ic('star', 'st')} ${esc(fmtImdb(m))}</p></div></div>`).join('');
   }
 
+
+
   function renderDeals() {
     dom.deals.innerHTML = DEALS.map((d) => `<div class="deal"><h4>${esc(d.t)}</h4><p>${esc(d.d)}</p>
       <button class="code" data-code="${esc(d.c)}">${ic('copy')}${esc(d.c)}</button></div>`).join('');
   }
+
+
 
   function refresh() {
     const filtering = isFiltering();
@@ -381,12 +406,16 @@
     if (state.feat.length > 1) state.timer = setInterval(() => goTo(state.slide + 1), CONFIG.slideIntervalMs);
   };
 
+
+
   function goTo(n) {
     if (!state.feat.length) return;
     state.slide = (n + state.feat.length) % state.feat.length;
     renderHero();
     startAutoplay();
   }
+
+
 
   // ===========================================================================
   // DETAILS VIEW
@@ -452,6 +481,8 @@
     window.scrollTo(0, 0);
   }
 
+
+
   function closeDetails() {
     if (dom.details.hidden) return;
     dom.details.innerHTML = '';
@@ -467,6 +498,9 @@
     x = Math.imul(x ^ (x >>> 15), 0x2C1B3C6D);
     return ((x ^ (x >>> 12)) >>> 0) % 100 < 28;
   }
+
+
+
 
   function showSeats() {
     const { cin, time } = state.slot;
@@ -554,22 +588,31 @@
     });
   }
 
-  function toggleList(id) {
-    const removed = state.list.includes(id);
-    // We only refocus if the user clicked the button on a card (to avoid losing focus on the details page)
-    const hadFocus = document.activeElement?.dataset?.bookmark === String(id) && !dom.details.contains(document.activeElement);
+  // Saving to My List needs an account. Not signed in = sent to log in, with a reason.
+  async function toggleList(id) {
+    const user = await DimmerApi.requireLogin('watchlist');
+    if (!user) return;
 
-    if (removed) state.list.splice(state.list.indexOf(id), 1);
+    const wasSaved = state.list.includes(id);
+    try {
+      const res = await DimmerApi.request(`/watchlist/${id}`, { method: wasSaved ? 'DELETE' : 'POST' });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        toast(data.message || 'Could not update My List. Please try again.');
+        return;
+      }
+    } catch {
+      toast('Cannot reach the server. Check that the backend is running.');
+      return;
+    }
+
+    if (wasSaved) state.list.splice(state.list.indexOf(id), 1);
     else state.list.push(id);
-    store.write(CONFIG.listStorageKey, state.list);
 
     renderHero();
     renderGrid();
     syncBookmarks(id);
-
-    if (hadFocus) dom.grid.querySelector(`[data-bookmark="${id}"]`)?.focus();
-
-    toast(removed ? 'Removed from My List' : 'Added to My List');
+    toast(wasSaved ? 'Removed from My List' : 'Added to My List');
   }
 
   // ===========================================================================
@@ -699,6 +742,24 @@
     }
   }
 
+
+  // Fills state.list with the signed-in user's saved movie ids. Visitors who aren't signed in get an empty list.
+  async function loadWatchlist() {
+    if (!window.DimmerApi) return;
+    try {
+      const me = await DimmerApi.request('/auth/me');
+      if (!me.ok) { state.list = []; return; }
+
+      const res = await DimmerApi.request('/watchlist');
+      if (!res.ok) return;
+      const items = await res.json();
+      state.list = items.map((m) => Number(m.id)).filter(Number.isFinite);
+    } catch (err) {
+      console.error('[DimmerTick] could not load My List', err);
+    }
+  }
+
+
   async function init() {
     const missing = Object.entries(dom).filter(([, el]) => !el).map(([name]) => name);
     if (missing.length) {
@@ -722,6 +783,8 @@
     }
 
     state.feat = state.movies.slice(0, CONFIG.featuredCount);
+    await loadWatchlist();
+
 
     safeRun('hot', renderHot);
     safeRun('genres', renderGenres);

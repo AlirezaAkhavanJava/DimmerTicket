@@ -8,17 +8,36 @@
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const USERNAME_RE = /^[a-zA-Z0-9_]{3,100}$/;
 
-    // Only a plain page name on this site, such as "movies.html" or "index.html?x=1".
-    // Rejects full URLs, "//host" tricks, absolute paths and backslashes.
+    // A plain page name on this site: "movies", "movies.html", "index.html?x=1".
+    // Rejects full URLs, "//host" tricks and backslashes.
     const SAFE_NEXT = /^[a-z0-9_-]+(\.html)?(\?[\w=&%.\-]*)?$/i;
 
-    if (mode === 'login' && new URLSearchParams(location.search).has('registered')) {
-        showNotice('Account created. You can log in now.', 'success');
+    // Explanations for the reasons the site sends visitors here (set by DimmerApi.requireLogin).
+    const REASON_TEXT = {
+        watchlist: 'Log in to add movies to your watchlist.',
+        booking: 'Log in to book tickets.',
+        admin: 'Log in with an admin account to open the admin panel.',
+    };
+
+    const params = new URLSearchParams(location.search);
+
+    if (!window.DimmerApi) {
+        showNotice('This page could not load its scripts. Reload the page and try again.', 'error');
+        console.error('[DimmerTick] api.js is missing. Add <script src="js/api.js"></script> before auth.js.');
+        return;
+    }
+
+    if (mode === 'login') {
+        if (params.has('registered')) {
+            showNotice('Account created. You can log in now.', 'success');
+        } else if (REASON_TEXT[params.get('reason')]) {
+            showNotice(REASON_TEXT[params.get('reason')], 'error');
+        }
     }
 
     function safeNext(value) {
         if (!value || !SAFE_NEXT.test(value)) return null;
-        if (/^(login|register)\.html/i.test(value)) return null;   // never loop back to the forms
+        if (/^(login|register)(\.html)?(\?|$)/i.test(value)) return null;   // never loop back to the forms
         return value;
     }
 
@@ -105,26 +124,25 @@
         setBusy(true);
         try {
             const res = await DimmerApi.request(`/auth/${mode}`, { method: 'POST', body });
-            const data = await res.json().catch(() => ({}));
+            const text = await res.text();
+            let data = {};
+            try { data = text ? JSON.parse(text) : {}; } catch { /* not JSON */ }
 
-            if (res.status === 403) {
-                showNotice('Your session expired. Reload the page and try again.', 'error');
-                return;
-            }
             if (!res.ok) {
-                showNotice(data.message || 'Something went wrong. Please try again.', 'error');
+                showNotice(data.message || `Something went wrong (error ${res.status}). Please try again.`, 'error');
                 return;
             }
 
             // The server has already set the session cookie. The browser stores nothing about the user.
             if (mode === 'login') {
-                const next = safeNext(new URLSearchParams(location.search).get('next'));
-                location.href = next || (data.role === 'ADMIN' ? 'admin.html' : 'index.html');
+                const next = safeNext(params.get('next'));
+                location.href = next || (data.role === 'ADMIN' ? '/admin' : '/movies');
             } else {
-                location.href = 'login.html?registered=1';
+                location.href = '/login?registered=1';
             }
-        } catch {
-            showNotice('Cannot reach the server. Is the backend running on port 8080?', 'error');
+        } catch (err) {
+            console.error('[DimmerTick] request failed:', err);
+            showNotice(err.message || 'Something went wrong. Please try again.', 'error');
         } finally {
             setBusy(false);
         }
