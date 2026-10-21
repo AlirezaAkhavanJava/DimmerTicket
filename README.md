@@ -184,5 +184,5 @@ Not decided yet.
 ---
 
 <div align="center">
-Built by <b>[Your Name]</b> · <a href="https://github.com/your-username">GitHub</a> · <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+Built by <b>Alireza Akhavan</b> · <a href="https://github.com/your-username">GitHub</a> · <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
 </div>
