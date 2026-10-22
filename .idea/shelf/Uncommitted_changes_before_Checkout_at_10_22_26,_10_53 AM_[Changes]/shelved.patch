@@ -1,0 +1,51 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"313902c1-f4d0-4a37-aaa8-16079c9258dd\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/Front-End/js/account-data.js\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Front-End/js/sections.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Front-End/account.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Front-End/account.html\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Front-End/css/profile.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Front-End/css/profile.css\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Front-End/js/profile.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Front-End/js/profile.js\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"EmbeddingIndexingInfo\">\n    <option name=\"cachedIndexableFilesCount\" value=\"86\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Exception\" />\n        <option value=\"Interface\" />\n        <option value=\"Enum\" />\n        <option value=\"Record\" />\n        <option value=\"Class\" />\n        <option value=\"CSS File\" />\n        <option value=\"HTML File\" />\n        <option value=\"JavaScript File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"McpProjectServerCommands\">\n    <commands />\n    <urls />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 5,\n  &quot;fromUser&quot;: false\n}</component>\n  <component name=\"ProjectId\" id=\"3KuFByvuSFOG2LdlOVhQLC5Qbbg\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\n    \"Maven.DimmerTickBackEnd [clean].executor\": \"Run\",\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"RequestMappingsPanelOrder0\": \"0\",\n    \"RequestMappingsPanelOrder1\": \"1\",\n    \"RequestMappingsPanelWidth0\": \"75\",\n    \"RequestMappingsPanelWidth1\": \"75\",\n    \"RunOnceActivity.MCP Project settings loaded\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"RunOnceActivity.typescript.service.memoryLimit.init\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"Spring Boot.DimmerTickBackEndApplication.executor\": \"Run\",\n    \"git-widget-placeholder\": \"account\",\n    \"ignore.preview.features.used\": \"true\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"last_opened_file_path\": \"/mnt/hdd/Home/Downloads/movies_import.csv\",\n    \"list.type.of.created.stylesheet\": \"CSS\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"project.structure.last.edited\": \"Modules\",\n    \"project.structure.proportion\": \"0.15\",\n    \"project.structure.side.proportion\": \"0.0\",\n    \"settings.editor.selected.configurable\": \"MavenSettings\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/Front-End/data\" />\n    </key>\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\n      <recent name=\"com.alireza.dimmertickbackend.config.security\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"DimmerTickBackEndApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\n      <module name=\"DimmerTickBackEnd\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.alireza.dimmertickbackend.DimmerTickBackEndApplication\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.33813.55\" />\n        <option value=\"bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.33813.55\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"313902c1-f4d0-4a37-aaa8-16079c9258dd\" name=\"Changes\" comment=\"\" />\n      <created>1792399415800</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1792399415800</updated>\n      <workItem from=\"1792399417141\" duration=\"6444000\" />\n      <workItem from=\"1792412423578\" duration=\"2048000\" />\n      <workItem from=\"1792422685913\" duration=\"4993000\" />\n      <workItem from=\"1792493172965\" duration=\"5503000\" />\n      <workItem from=\"1792498955991\" duration=\"1370000\" />\n      <workItem from=\"1792507110033\" duration=\"1387000\" />\n      <workItem from=\"1792514663179\" duration=\"368000\" />\n      <workItem from=\"1792525303016\" duration=\"5153000\" />\n      <workItem from=\"1792566666843\" duration=\"3844000\" />\n      <workItem from=\"1792585401284\" duration=\"3283000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7cf2ecf60b938e7679794ba7daf519a21045c50d)
++++ b/.idea/workspace.xml	(date 1792606476851)
+@@ -4,21 +4,14 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/Front-End/js/account-data.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Front-End/js/sections.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Front-End/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/account.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Front-End/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/css/profile.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Front-End/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/js/profile.js" afterDir="false" />
+-    </list>
++    <list default="true" id="313902c1-f4d0-4a37-aaa8-16079c9258dd" name="Changes" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+   <component name="EmbeddingIndexingInfo">
+-    <option name="cachedIndexableFilesCount" value="86" />
++    <option name="cachedIndexableFilesCount" value="109" />
+   </component>
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+@@ -71,7 +64,7 @@
+     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "Spring Boot.DimmerTickBackEndApplication.executor": "Run",
+-    "git-widget-placeholder": "account",
++    "git-widget-placeholder": "main",
+     "ignore.preview.features.used": "true",
+     "kotlin-language-version-configured": "true",
+     "last_opened_file_path": "/mnt/hdd/Home/Downloads/movies_import.csv",
+@@ -131,6 +124,7 @@
+       <workItem from="1792525303016" duration="5153000" />
+       <workItem from="1792566666843" duration="3844000" />
+       <workItem from="1792585401284" duration="3283000" />
++      <workItem from="1792606276419" duration="199000" />
+     </task>
+     <servers />
+   </component>

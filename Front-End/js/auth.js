@@ -8,11 +8,10 @@
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const USERNAME_RE = /^[a-zA-Z0-9_]{3,100}$/;
 
-    // A plain page name on this site: "movies", "movies.html", "index.html?x=1".
-    // Rejects full URLs, "//host" tricks and backslashes.
+    // A plain page name on this site, such as "movies", "account.html" or "index.html?x=1".
     const SAFE_NEXT = /^[a-z0-9_-]+(\.html)?(\?[\w=&%.\-]*)?$/i;
 
-    // Explanations for the reasons the site sends visitors here (set by DimmerApi.requireLogin).
+    // Explanations for the reasons the site sends visitors here.
     const REASON_TEXT = {
         watchlist: 'Log in to add movies to your watchlist.',
         booking: 'Log in to book tickets.',
@@ -37,6 +36,7 @@
 
     function safeNext(value) {
         if (!value || !SAFE_NEXT.test(value)) return null;
+        // Never send people back to the forms or to the terms page as a destination.
         if (/^(login|register|terms)(\.html)?(\?|$)/i.test(value)) return null;
         return value;
     }
@@ -65,13 +65,7 @@
         if (!EMAIL_RE.test(v.email)) errors.email = 'Enter a valid email address.';
 
         if (mode === 'login') {
-            // Everyone must accept the current agreement before booking.
-            const next = safeNext(params.get('next'));
-            if (!data.termsAccepted) {
-                location.href = '/terms' + (next ? `?next=${encodeURIComponent(next)}` : '');
-            } else {
-                location.href = next || (data.role === 'ADMIN' ? '/admin' : '/movies');
-            }
+            if (!v.password) errors.password = 'Enter your password.';
         } else {
             if (v.password.length < 8) errors.password = 'Use at least 8 characters.';
             else if (v.password.length > 72) errors.password = 'Use at most 72 characters.';
@@ -139,10 +133,14 @@
                 return;
             }
 
-            // The server has already set the session cookie. The browser stores nothing about the user.
             if (mode === 'login') {
                 const next = safeNext(params.get('next'));
-                location.href = next || (data.role === 'ADMIN' ? '/admin' : '/movies');
+                // Everyone must accept the current agreement before booking.
+                if (!data.termsAccepted) {
+                    location.href = '/terms' + (next ? `?next=${encodeURIComponent(next)}` : '');
+                } else {
+                    location.href = next || (data.role === 'ADMIN' ? '/admin' : '/movies');
+                }
             } else {
                 location.href = '/login?registered=1';
             }
