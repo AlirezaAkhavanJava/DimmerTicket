@@ -2,10 +2,12 @@ package com.alireza.dimmertickbackend.service.appUser;
 
 import com.alireza.dimmertickbackend.domain.AppUser;
 import com.alireza.dimmertickbackend.domain.AvatarCatalog;
-import com.alireza.dimmertickbackend.domain.stat.Role;
 import com.alireza.dimmertickbackend.domain.dto.*;
+import com.alireza.dimmertickbackend.domain.legal.Terms;
+import com.alireza.dimmertickbackend.domain.stat.Role;
 import com.alireza.dimmertickbackend.repository.AppUserRepository;
 import com.alireza.dimmertickbackend.repository.WatchlistItemRepository;
+import com.alireza.dimmertickbackend.service.geo.GeoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,8 +34,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserResponse create(CreateUserRequest request) {
-        // Save usernames and emails in lowercase, so "Ali" and "ali" are the same account
+    public UserResponse create(CreateUserRequest request, GeoService.ClientInfo client) {
+        if (!Terms.CURRENT_VERSION.equals(request.termsVersion())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "The agreement has changed. Reload the page and read the new version.");
+        }
+
         String username = request.username().trim().toLowerCase();
         String email = request.email().trim().toLowerCase();
 
@@ -48,9 +55,10 @@ public class UserServiceImpl implements UserService {
         user.setEmail(email);
         user.setFullName(request.fullName().trim());
         user.setBirthDate(request.birthDate());
-        user.setPasswordHash(passwordEncoder.encode(request.password()));   // hash, never the real password
-        user.setRole(Role.USER); // everyone starts as a normal user
+        user.setPasswordHash(passwordEncoder.encode(request.password()));
+        user.setRole(Role.USER);
         user.setAvatar(AvatarCatalog.DEFAULT);
+        recordAcceptance(user, Terms.CURRENT_VERSION, client);
 
         return UserResponse.from(userRepository.saveAndFlush(user));
     }
@@ -131,5 +139,25 @@ public class UserServiceImpl implements UserService {
     private AppUser findUser(UUID id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    }
+
+    @Override
+    @Transactional
+    public UserResponse acceptTerms(UUID id, String version, GeoService.ClientInfo client) {
+        if (!Terms.CURRENT_VERSION.equals(version)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "The agreement has changed. Reload the page and read the new version.");
+        }
+        AppUser user = findUser(id);
+        recordAcceptance(user, Terms.CURRENT_VERSION, client);
+        return UserResponse.from(userRepository.saveAndFlush(user));
+    }
+
+    /** Stores when, from which IP and country, and which version the user accepted. */
+    private void recordAcceptance(AppUser user, String version, GeoService.ClientInfo client) {
+        user.setTermsVersion(version);
+        user.setTermsAcceptedAt(Instant.now());
+        user.setTermsIp(client.ip());
+        user.setTermsCountry(client.country());
     }
 }

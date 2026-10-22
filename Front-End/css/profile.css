@@ -580,3 +580,48 @@
     display: grid;
     gap: 14px;
 }
+
+
+/* ---------- Navigation ---------- */
+.acct-nav button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s ease, color 0.2s ease, padding-left 0.25s ease;
+}
+.acct-nav button i { font-size: 17px; transition: transform 0.25s ease; }
+.acct-nav button:hover { padding-left: 18px; }
+.acct-nav button:hover i { transform: scale(1.15); }
+
+/* ---------- Panel entrance: children fade up in sequence ---------- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes pop {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: none; }
+}
+.acct-main > [data-panel]:not([hidden]) > * {
+    animation: fadeUp 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.acct-main > [data-panel]:not([hidden]) > *:nth-child(2) { animation-delay: 0.06s; }
+.acct-main > [data-panel]:not([hidden]) > *:nth-child(3) { animation-delay: 0.12s; }
+.acct-main > [data-panel]:not([hidden]) > *:nth-child(4) { animation-delay: 0.18s; }
+
+/* ---------- Hover feedback ---------- */
+.card-panel { transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+.card-panel:hover { border-color: #33333f; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+.stat { transition: transform 0.2s ease, border-color 0.2s ease; }
+.stat:hover { transform: translateY(-3px); }
+.item, .ticket { transition: transform 0.2s ease, border-color 0.2s ease; }
+.item:hover, .ticket:hover { transform: translateX(3px); }
+.profile-avatar { animation: pop 0.5s ease both; }
+
+/* ---------- Respect users who turn off motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

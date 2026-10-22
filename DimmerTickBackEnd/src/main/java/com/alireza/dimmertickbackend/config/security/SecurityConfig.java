@@ -69,7 +69,11 @@ public class SecurityConfig {
 
                         // Login required
                         .requestMatchers("/api/watchlist/**", "/api/bookings/**", "/api/tickets/**").authenticated()
+
+                        // Geo
+                        .requestMatchers("/api/geo/**").permitAll()
                         .anyRequest().authenticated());
+
 
         return http.build();
     }

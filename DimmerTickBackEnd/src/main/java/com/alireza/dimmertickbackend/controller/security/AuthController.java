@@ -5,6 +5,7 @@ import com.alireza.dimmertickbackend.domain.dto.LoginRequest;
 import com.alireza.dimmertickbackend.domain.dto.UserResponse;
 import com.alireza.dimmertickbackend.repository.AppUserRepository;
 import com.alireza.dimmertickbackend.service.appUser.UserService;
+import com.alireza.dimmertickbackend.service.geo.GeoService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -24,6 +25,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Locale;
 import java.util.Map;
+import jakarta.servlet.http.HttpServletRequest;
+import com.alireza.dimmertickbackend.service.geo.GeoService;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -34,6 +37,7 @@ public class AuthController {
     private final SecurityContextRepository securityContextRepository;
     private final UserService userService;
     private final AppUserRepository userRepository;
+    private final GeoService geo;
 
 
     @GetMapping("/csrf")
@@ -42,8 +46,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponse> register(@Valid @RequestBody CreateUserRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(request));
+    public ResponseEntity<UserResponse> register(@Valid @RequestBody CreateUserRequest request,
+                                                 HttpServletRequest http) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userService.create(request, geo.describe(http)));
     }
 
     @PostMapping("/login")

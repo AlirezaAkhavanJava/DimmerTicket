@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/profile.css">
@@ -15,7 +16,7 @@
 
 <header class="topbar">
     <div class="topbar-left">
-        <button class="back-btn" id="back-btn" type="button">← Back</button>
+        <button class="back-btn" id="back-btn" type="button"><i class="bi bi-arrow-left"></i> Back</button>
         <a class="logo" href="/movies">Dimmer<b>Tick</b></a>
     </div>
     <div class="top-actions">
@@ -41,14 +42,14 @@
         </div>
 
         <nav class="acct-nav" aria-label="Account sections">
-            <button type="button" data-go="overview">🏠 Overview</button>
-            <button type="button" data-go="settings">⚙️ Settings</button>
-            <button type="button" data-go="comments">💬 Comments</button>
-            <button type="button" data-go="tickets">🎫 Tickets</button>
-            <button type="button" data-go="friends">👥 Friends</button>
-            <button type="button" data-go="gifts">🎁 Gifts</button>
-            <button type="button" data-go="wallet">👛 Wallet</button>
-            <button type="button" data-go="levels">🏅 Member level</button>
+            <button type="button" data-go="overview"><i class="bi bi-grid-1x2"></i><span>Overview</span></button>
+            <button type="button" data-go="settings"><i class="bi bi-sliders"></i><span>Settings</span></button>
+            <button type="button" data-go="comments"><i class="bi bi-chat-square-text"></i><span>Comments</span></button>
+            <button type="button" data-go="tickets"><i class="bi bi-ticket-perforated"></i><span>Tickets</span></button>
+            <button type="button" data-go="friends"><i class="bi bi-people"></i><span>Friends</span></button>
+            <button type="button" data-go="gifts"><i class="bi bi-gift"></i><span>Gifts</span></button>
+            <button type="button" data-go="wallet"><i class="bi bi-wallet2"></i><span>Wallet</span></button>
+            <button type="button" data-go="levels"><i class="bi bi-award"></i><span>Member level</span></button>
         </nav>
     </aside>
 
@@ -131,11 +132,11 @@
                         <label class="field">
                             <span>Your rating</span>
                             <select name="rating">
-                                <option value="5">★★★★★  Loved it</option>
-                                <option value="4">★★★★☆  Good</option>
-                                <option value="3">★★★☆☆  Okay</option>
-                                <option value="2">★★☆☆☆  Weak</option>
-                                <option value="1">★☆☆☆☆  Not for me</option>
+                                <option value="5">★★★★★ Loved it</option>
+                                <option value="4">★★★★☆ Good</option>
+                                <option value="3">★★★☆☆ Okay</option>
+                                <option value="2">★★☆☆☆ Weak</option>
+                                <option value="1">★☆☆☆☆ Not for me</option>
                             </select>
                         </label>
                     </div>
@@ -170,7 +171,8 @@
                     <input name="username" placeholder="Username" autocomplete="off">
                     <button type="submit" class="btn-small">Follow</button>
                 </form>
-                <p class="muted small">Searching every member needs the server. For now, you can follow the suggestions below.</p>
+                <p class="muted small">Searching every member needs the server. For now, you can follow the suggestions
+                    below.</p>
             </div>
 
             <div class="card-panel">

@@ -35,11 +35,11 @@ public class UserController {
     /**
      * POST /api/users : create an account
      */
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse create(@Valid @RequestBody CreateUserRequest request) {
-        return userService.create(request);
-    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public UserResponse create(@Valid @RequestBody CreateUserRequest request) {
+//        return userService.create(request);
+//    }
 
     /**
      * GET /api/users/{id} : see account details

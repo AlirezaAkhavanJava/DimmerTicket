@@ -2,27 +2,33 @@
     const form = document.getElementById('auth-form');
     if (!form) return;
 
-    const mode = form.dataset.mode;                      // "login" or "register"
+    const TERMS_VERSION = '1.0';
+    const BLOCKED_TEXT = 'DimmerTick is not available in your country.';
+
+    const mode = form.dataset.mode;                       // "login" or "register"
     const notice = document.getElementById('notice');
     const submitBtn = document.getElementById('submit-btn');
+    const gate = document.getElementById('terms-gate');
+    const termsBox = document.getElementById('terms-box');
+    const termsHint = document.getElementById('terms-hint');
+    const termsCheck = document.getElementById('terms-check');
+    const geoLine = document.getElementById('terms-geo');
+    const params = new URLSearchParams(location.search);
+
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const USERNAME_RE = /^[a-zA-Z0-9_]{3,100}$/;
-
-    // A plain page name on this site, such as "movies", "account.html" or "index.html?x=1".
     const SAFE_NEXT = /^[a-z0-9_-]+(\.html)?(\?[\w=&%.\-]*)?$/i;
-
-    // Explanations for the reasons the site sends visitors here.
     const REASON_TEXT = {
         watchlist: 'Log in to add movies to your watchlist.',
         booking: 'Log in to book tickets.',
         admin: 'Log in with an admin account to open the admin panel.',
     };
 
-    const params = new URLSearchParams(location.search);
+    let geo = null;               // { ip, country, blocked } from /api/geo/me
+    let pendingTerms = false;     // logged in, but the current agreement is not accepted yet
 
     if (!window.DimmerApi) {
         showNotice('This page could not load its scripts. Reload the page and try again.', 'error');
-        console.error('[DimmerTick] api.js is missing. Add <script src="js/api.js"></script> before auth.js.');
         return;
     }
 
@@ -33,13 +39,105 @@
             showNotice(REASON_TEXT[params.get('reason')], 'error');
         }
     }
+    if (mode === 'register') {
+        gate.hidden = false;
+        requestAnimationFrame(unlockIfAtEnd);
+    }
+
+    // ---------- helpers ----------
+
+    async function readJson(res) {
+        const text = await res.text();
+        try { return text ? JSON.parse(text) : {}; } catch { return {}; }
+    }
+
+    function showNotice(text, type) {
+        notice.textContent = text;          // textContent, never innerHTML
+        notice.className = `notice ${type}`;
+        notice.hidden = false;
+    }
 
     function safeNext(value) {
         if (!value || !SAFE_NEXT.test(value)) return null;
-        // Never send people back to the forms or to the terms page as a destination.
-        if (/^(login|register|terms)(\.html)?(\?|$)/i.test(value)) return null;
+        if (/^(login|register)(\.html)?(\?|$)/i.test(value)) return null;
         return value;
     }
+
+    function goNext(role) {
+        const next = safeNext(params.get('next'));
+        location.href = next || (role === 'ADMIN' ? '/admin' : '/movies');
+    }
+
+    function canSubmit() {
+        if (geo && geo.blocked) return false;
+        if (mode === 'register' || pendingTerms) return termsCheck.checked;
+        return true;
+    }
+
+    function buttonLabel() {
+        if (pendingTerms) return 'Accept and continue';
+        return mode === 'login' ? 'Log in' : 'Create account';
+    }
+
+    function setBusy(busy) {
+        submitBtn.disabled = busy || !canSubmit();
+        submitBtn.textContent = busy ? 'Please wait...' : buttonLabel();
+    }
+
+    // ---------- agreement box ----------
+
+    // The checkbox unlocks only once the reader reaches the end of the agreement.
+    function unlockIfAtEnd() {
+        const atEnd = termsBox.scrollTop + termsBox.clientHeight >= termsBox.scrollHeight - 8;
+        const fitsOnScreen = termsBox.scrollHeight <= termsBox.clientHeight + 4;
+        if (atEnd || fitsOnScreen) {
+            termsCheck.disabled = false;
+            termsHint.hidden = true;
+        }
+    }
+    termsBox.addEventListener('scroll', unlockIfAtEnd);
+
+    // Ticking the box records the IP and country the server sees, so the reader can see them.
+    async function recordLocation() {
+        try {
+            geo = await readJson(await DimmerApi.request('/geo/me'));
+        } catch {
+            termsCheck.checked = false;
+            geoLine.textContent = 'Could not check your location. Check the connection and try again.';
+            geoLine.hidden = false;
+            return;
+        }
+
+        if (geo.blocked) {
+            termsCheck.checked = false;
+            termsCheck.disabled = true;
+            geoLine.hidden = true;
+            showNotice(BLOCKED_TEXT, 'error');
+            return;
+        }
+
+        geoLine.textContent = `This acceptance will be recorded with IP ${geo.ip} (country: ${geo.country}).`;
+        geoLine.hidden = false;
+    }
+
+    termsCheck.addEventListener('change', async () => {
+        if (termsCheck.checked) {
+            await recordLocation();
+        } else {
+            geoLine.hidden = true;
+        }
+        setBusy(false);
+    });
+
+    function enterTermsStep() {
+        pendingTerms = true;
+        gate.hidden = false;
+        showNotice('Please read and accept the updated Terms of Purchase and Use to continue.', 'error');
+        gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        requestAnimationFrame(unlockIfAtEnd);
+    }
+
+    // ---------- validation ----------
 
     function readValues() {
         const values = {};
@@ -91,25 +189,43 @@
         if (slot) slot.textContent = '';
     });
 
-    function showNotice(text, type) {
-        notice.textContent = text;             // textContent, never innerHTML
-        notice.className = `notice ${type}`;
-        notice.hidden = false;
-    }
+    // ---------- submit ----------
 
-    function setBusy(busy) {
-        submitBtn.disabled = busy;
-        submitBtn.textContent = busy ? 'Please wait...' : (mode === 'login' ? 'Log in' : 'Create account');
+    async function acceptPendingTerms() {
+        if (!termsCheck.checked) return showNotice('Tick the box to accept the terms.', 'error');
+
+        setBusy(true);
+        try {
+            const res = await DimmerApi.request('/account/terms', {
+                method: 'POST',
+                body: { version: TERMS_VERSION },
+            });
+            const data = await readJson(res);
+            if (!res.ok) return showNotice(data.message || 'Could not save your acceptance.', 'error');
+
+            pendingTerms = false;
+            goNext(data.role);
+        } catch (err) {
+            showNotice(err.message || 'Something went wrong. Please try again.', 'error');
+        } finally {
+            setBusy(false);
+        }
     }
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         notice.hidden = true;
 
+        if (pendingTerms) return acceptPendingTerms();
+
         const values = readValues();
         const errors = validate(values);
         showErrors(errors);
         if (Object.keys(errors).length) return;
+
+        if (mode === 'register' && !termsCheck.checked) {
+            return showNotice('Read the Terms of Purchase and Use and tick the box to continue.', 'error');
+        }
 
         const body = mode === 'login'
             ? { email: values.email, password: values.password }
@@ -119,31 +235,32 @@
                 username: values.username,
                 email: values.email,
                 password: values.password,
+                termsVersion: TERMS_VERSION,
+                termsAccepted: true,
             };
 
         setBusy(true);
         try {
             const res = await DimmerApi.request(`/auth/${mode}`, { method: 'POST', body });
-            const text = await res.text();
-            let data = {};
-            try { data = text ? JSON.parse(text) : {}; } catch { /* not JSON */ }
+            const data = await readJson(res);
 
             if (!res.ok) {
                 showNotice(data.message || `Something went wrong (error ${res.status}). Please try again.`, 'error');
                 return;
             }
 
-            if (mode === 'login') {
-                const next = safeNext(params.get('next'));
-                // Everyone must accept the current agreement before booking.
-                if (!data.termsAccepted) {
-                    location.href = '/terms' + (next ? `?next=${encodeURIComponent(next)}` : '');
-                } else {
-                    location.href = next || (data.role === 'ADMIN' ? '/admin' : '/movies');
-                }
-            } else {
+            if (mode === 'register') {
                 location.href = '/login?registered=1';
+                return;
             }
+
+            // Logged in, but the agreement is out of date or was never accepted.
+            if (!data.termsAccepted) {
+                enterTermsStep();
+                return;
+            }
+
+            goNext(data.role);
         } catch (err) {
             console.error('[DimmerTick] request failed:', err);
             showNotice(err.message || 'Something went wrong. Please try again.', 'error');
@@ -151,4 +268,22 @@
             setBusy(false);
         }
     });
+
+    // ---------- start ----------
+
+    async function loadGeo() {
+        try {
+            geo = await readJson(await DimmerApi.request('/geo/me'));
+        } catch {
+            geo = null;
+        }
+        if (geo && geo.blocked) {
+            showNotice(BLOCKED_TEXT, 'error');
+            form.querySelectorAll('input, button').forEach((el) => { el.disabled = true; });
+            return;
+        }
+        setBusy(false);
+    }
+
+    loadGeo();
 })();

@@ -58,14 +58,25 @@ public class AppUser {
 
 
     // Avatar
-    /** One of the keys in AvatarCatalog. Null for accounts created before avatars existed. */
+    /**
+     * One of the keys in AvatarCatalog. Null for accounts created before avatars existed.
+     */
     @Column(length = 40)
     private String avatar;
 
-    /** The agreement version this user accepted. Booking requires it to equal Terms.CURRENT_VERSION. */
+    /**
+     * The agreement version this user accepted. Booking requires it to equal Terms.CURRENT_VERSION.
+     */
     @Column(name = "terms_version", length = 20)
     private String termsVersion;
 
     @Column(name = "terms_accepted_at")
     private Instant termsAcceptedAt;
+
+    // GEO
+    @Column(name = "terms_ip", length = 64)
+    private String termsIp;
+
+    @Column(name = "terms_country", length = 16)
+    private String termsCountry;
 }

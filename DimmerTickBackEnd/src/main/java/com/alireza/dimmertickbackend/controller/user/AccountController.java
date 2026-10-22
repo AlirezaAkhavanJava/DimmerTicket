@@ -5,6 +5,8 @@ import com.alireza.dimmertickbackend.domain.dto.*;
 import com.alireza.dimmertickbackend.domain.legal.Terms;
 import com.alireza.dimmertickbackend.repository.AppUserRepository;
 import com.alireza.dimmertickbackend.service.appUser.UserService;
+import com.alireza.dimmertickbackend.service.geo.GeoService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class AccountController {
 
     private final UserService userService;
     private final AppUserRepository userRepository;
+    private final GeoService geo;
 
     @GetMapping
     public UserResponse me(Authentication auth) {
@@ -57,16 +60,9 @@ public class AccountController {
 
     /** Records that the signed-in user accepted the agreement version shown on /terms. */
     @PostMapping("/terms")
-    @Transactional
-    public UserResponse acceptTerms(Authentication auth, @Valid @RequestBody AcceptTermsRequest request) {
-        if (!Terms.CURRENT_VERSION.equals(request.version())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT,
-                    "The agreement has changed. Reload the page and read the new version.");
-        }
-        AppUser user = userRepository.findById(currentUserId(auth))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Log in again."));
-        user.setTermsVersion(Terms.CURRENT_VERSION);
-        user.setTermsAcceptedAt(Instant.now());
-        return UserResponse.from(userRepository.save(user));
+    public UserResponse acceptTerms(Authentication auth,
+                                    @Valid @RequestBody AcceptTermsRequest request,
+                                    HttpServletRequest http) {
+        return userService.acceptTerms(currentUserId(auth), request.version(), geo.describe(http));
     }
 }
